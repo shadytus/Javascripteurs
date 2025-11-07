@@ -61,11 +61,7 @@ export default {
                     <section class="Art">
                     <h3>Un cinéma engagé</h3>
                     <p>Films après films, les Dardenne explorent les thèmes de la précarité, de l'immigration et de la rédemption. "Le Gamin au vélo", "Deux jours, une nuit" avec Marion Cotillard, ou encore "Le Jeune Ahmed" témoignent de leur engagement constant pour un cinéma humaniste et social.</p>
-                    </section>`,
-                    author: "Sophie Lemaire",
-                    image: "./media/dardenne.jpg",
-                    category: "Réalisateurs",
-                    type: "Portrait"
+                    </section>,
                 },
                 {
                     id: 3,
