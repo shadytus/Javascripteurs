@@ -4,14 +4,19 @@ export default {
     template: `
         <main v-show="this.page == 'home'">
         <main class="container">
+        `,
     props : {
         page    :{
             type        :String,
             required    :true,
         },
     },
-     {
-                    {
+    data() {
+        
+        return {
+            selectedArticle : null,
+            articles : [
+                {
                     id : 1,
                     title : "Ces coins de Belgique dont le cinéma raffole: De nombreux tournages se déroulent en Belgique. Petit tour des lieux les plus prisés par le septième art.",
                     body : `
@@ -40,10 +45,10 @@ export default {
                     <p>On peut Ã©galement citer "Au Risque de se Perdre", mÃ©lodrame de 1958 avec Audrey Hepburn, dans lequel celle-ci joue une nonne dans un couvent brugeois, mais aussi la comÃ©die de science-fiction bollywoodienne "PK", qui a Ã©tÃ© un Ã©norme succÃ¨s en Inde, ou encore la sÃ©rie britannique "The White Queen".
                     </p>
                     </section>`,   
-                    },
-                    {
+                },
+                {
                     id : 2,
-                    title : ""Les frères Dardenne, fierté du cinéma belge",
+                    title : "Les frères Dardenne, fierté du cinéma belge",
                     body: `
                     <section class="Art">
                     <p><strong>Jean-Pierre et Luc Dardenne sont les cinéastes belges les plus primés au monde. Retour sur un parcours exceptionnel.</strong></p>
@@ -56,7 +61,7 @@ export default {
                     <section class="Art">
                     <h3>Un cinéma engagé</h3>
                     <p>Films après films, les Dardenne explorent les thèmes de la précarité, de l'immigration et de la rédemption. "Le Gamin au vélo", "Deux jours, une nuit" avec Marion Cotillard, ou encore "Le Jeune Ahmed" témoignent de leur engagement constant pour un cinéma humaniste et social.</p>
-                    </section>,
+                    </section>`,
                 },
                 {
                     id: 3,
@@ -198,6 +203,6 @@ export default {
             ]
         }
     }
+
 }
-    
-}
+
