@@ -10,11 +10,6 @@ export default {
             required    :true,
         },
     },
-    // data() {
-    //     return {
-    //         selectedArticle : null,
-            
-     articles : [
      {
                     {
                     id : 1,
