@@ -5,6 +5,19 @@ export default {
         <main v-show="this.page == 'home'">
         
             <main class="container">
+
+                <article class ="breaking-news" v-if="breakingNewsArticle">
+                    <a href="#" @click.prevent="showArticleDetails(breakingNewsArticle)">
+                        <img :src="breakingNewsArticle.image" alt="Breaking News Image">
+                        <nav class="text">
+                            <h2><strong>{{ breakingNewsArticle.title }}</strong></h2>
+                            <h3 v-html="breakingNewsArticle.resume"></h3>
+                        </nav>
+                    </a>
+                </article>
+            </main>
+        </main>
+
         `,
     props : {
         page    :{
@@ -19,7 +32,12 @@ export default {
             articles : [
                 {
                     id : 1,
-                    title : "Ces coins de Belgique dont le cinéma raffole: De nombreux tournages se déroulent en Belgique. Petit tour des lieux les plus prisés par le septième art.",
+                    title : "Ces coins de Belgique dont le cinéma raffole",
+                    resume : `
+                        <section class="Art">
+                        <p><strong>De nombreux tournages se déroulent en Belgique. Petit tour des lieux les plus prisés par le septième art.</strong></p>
+                        </section>
+                    `,
                     body : `
                     <section class="Art">
                     <p><strong>De nombreux tournages se déroulent en Belgique. Petit tour des lieux les plus prisés par le septième art.</strong></p>
@@ -48,8 +66,8 @@ export default {
                     </section>`,  
                     // image :,
                     // author :,
-                    // category :,
-                    // type :  
+                    // category : ,
+                    type : "breaking"
                 },
                 {
                     id : 2,
@@ -254,6 +272,9 @@ export default {
                 return `/media/${this.selectedArticle.image}`
             }
             else return null;
+        },
+        breakingNewsArticle(){
+            return this.articles.find(article => article.type === 'breaking');
         }
     },
 
