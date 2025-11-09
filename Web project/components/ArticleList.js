@@ -64,9 +64,9 @@ export default {
                     <p>On peut Ã©galement citer "Au Risque de se Perdre", mÃ©lodrame de 1958 avec Audrey Hepburn, dans lequel celle-ci joue une nonne dans un couvent brugeois, mais aussi la comÃ©die de science-fiction bollywoodienne "PK", qui a Ã©tÃ© un Ã©norme succÃ¨s en Inde, ou encore la sÃ©rie britannique "The White Queen".
                     </p>
                     </section>`,  
-                    // image :,
-                    // author :,
-                    // category : ,
+                    // image : 39e98420b5e98bfbdc8a619bef7b8f61-1740665779,
+                    // author :Adrien Corbeel,
+                    // category : Culture ,
                     type : "breaking"
                 },
                 {
