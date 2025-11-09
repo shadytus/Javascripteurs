@@ -72,6 +72,11 @@ export default {
                 {
                     id : 2,
                     title : "Les frères Dardenne, fierté du cinéma belge",
+                    resume:<section class="Art">
+  <h2>Les frères Dardenne, fierté du cinéma belge</h2>
+  <p>Jean-Pierre et Luc Dardenne sont des figures emblématiques du cinéma belge et mondial. Leur approche réaliste et sociale, caractérisée par des plans longs, un son naturel et peu de musique, a valu à leurs films de nombreuses récompenses, dont deux Palmes d'Or à Cannes. À travers des œuvres comme <em>Rosetta</em>, <em>L'Enfant</em> ou <em>Le Jeune Ahmed</em>, ils explorent des thèmes sociaux profonds tels que la pauvreté, l'immigration et la résilience, confirmant leur rôle de pionniers du cinéma d'auteur.</p>
+</section>
+
                     body: `
                     <section class="Art">
                     <p><strong>Jean-Pierre et Luc Dardenne sont les cinéastes belges les plus primés au monde. Retour sur un parcours exceptionnel.</strong></p>
@@ -87,8 +92,8 @@ export default {
                     </section>`,
                     // image :,
                     // author :,
-                    // category :,
-                    // type : 
+                    // category : "cinema",
+                    // type : "portrait
                 },
                 {
                     id: 3,
