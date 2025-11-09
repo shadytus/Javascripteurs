@@ -3,6 +3,25 @@ export default {
 
     template: `
         <footer>
+
+            <hr>
+            <section class="bonus-history">
+            
+                <button @click="showHistory = !showHistory">
+                    {{ showHistory ? 'Cacher' : 'Afficher' }} les 5 derniers choix
+                </button>
+                
+                <ul v-if="showHistory">
+                
+                    <li v-for="(item, index) in history" :key="index">
+                        {{ item.type }} changé en : <strong>{{ item.value }}</strong>
+                    </li>
+                    
+                    <li v-if="history.length === 0">
+                        Aucun changement n'a encore été fait.
+                    </li>
+                </ul>
+            </section>
             <section class="container-footer">
             <section class="row">
                 <section class="cont1">
@@ -68,5 +87,16 @@ export default {
 
             </section>
         </footer>
-    `
+    `,
+    props : {
+        history: {
+            type: Array,
+            required: true
+        }
+    },
+    data() {
+        return {
+            showHistory: false
+        }
+    } 
 }

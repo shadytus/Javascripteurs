@@ -21,6 +21,7 @@ export default {
                     <a href="#">N-TV</a>
                     <a href="#">Delas</a>
                 </nav>
+                
             </section>
             
             <section class="header-right">
@@ -37,7 +38,11 @@ export default {
                     <img src="media/logo.jpg">
                 </a>
             </section>
+            
             <section class="header-left-2">
+            <div class="mouse-tracker">
+                Stats -> X: {{ mouseX }} | Y: {{ mouseY }}
+            </div>
                 <nav>
                     <a href="#"><strong>ÚLTIMAS</strong></a>
                     <a href="#"><strong>JN DIRETO</strong></a>
@@ -70,11 +75,15 @@ export default {
         </section>
     </header>
     `,
+    props : {
+        mouseX : Number,
+        mouseY : Number
+    },
     data(){
         return {
             localSearchTerm : '',
-            currentTheme : 'theme-light',
-            currentFont : ''
+            selectedTheme : 'theme-light',
+            selectedFont : ''
         }
     },
 

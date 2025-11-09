@@ -18,9 +18,13 @@ createApp ({
     data() {
         return{
             currentPage: 'home',
-            localSearchTerm : '',
+            searchTerm : '',
             currentTheme : 'theme-light',
-            currentFont : ''
+            currentFont : '',
+
+            historyLog: [],
+            mouseX: 0,
+            mouseY: 0
         }
     },
 
@@ -29,14 +33,46 @@ createApp ({
             this.currentPage = page;
         },
         handleSearch(newSearchTerm){
-            this.localSearchTerm = newSearchTerm
+            this.searchTerm = newSearchTerm
         },
         handleTheme(newTheme){
-            this.currentTheme = newTheme
+            this.currentTheme = newTheme;
+
+            document.body.classList.remove('theme-light', 'theme-dark', 'theme-rose');
+            document.body.classList.add(newTheme);
+            this.addHistoryLog({type :'Thème', value : newTheme})
         },
         handleFont(newFont){
-            this.currentFont = newFont
+            this.currentFont = newFont;
+
+            document.body.classList.remove('font-arial', 'font-times', 'font-consolas');
+            
+            if (newFont) {
+                document.body.classList.add(newFont)
+            } 
+            this.addHistoryLog({type :'Police', value : newFont})
+        },
+        addHistoryLog(logEntry){
+            this.historyLog.unshift(logEntry);
+            this.historyLog = this.historyLog.slice(0,5)
+        },
+        updateMouseCoordinates(event){
+            this.mouseX = event.clientX;
+            this.mouseY = event.clientY;
         }
     },
+
+    mounted(){
+        document.body.classList.add(this.currentTheme);
+        if (this.currentFont){
+            document.body.classList.add(this.currentFont);
+        }
+
+        window.addEventListener('mousemove',this.updateMouseCoordinates);
+    },
+    unmounted(){
+        window.removeEventListener('mousemove', this.updateMouseCoordinates);
+    }
+    
 
 }).mount("#app");

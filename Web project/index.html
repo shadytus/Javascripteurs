@@ -21,10 +21,13 @@
 
 </head>
 <body id="app">
-    <press-menu>
+    <press-menu
         @update-search="handleSearch"
         @update-theme="handleTheme"
         @update-font="handleFont"
+        
+        :mouse-x="mouseX"
+        :mouse-y="mouseY">
     </press-menu>
 
     <article-list 
@@ -32,7 +35,7 @@
         :search-query="searchTerm">
     </article-list>
 
-    <site-footer></site-footer>
+    <site-footer :history="historyLog"></site-footer>
   
 </body>
 </html>
