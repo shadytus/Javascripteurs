@@ -54,5 +54,11 @@ export default {
             </section>
         </section>
     </header>
-    `
+    `,
+    data(){
+        return {
+            localSearchTerm : '',
+            
+        }
+    }
 }
