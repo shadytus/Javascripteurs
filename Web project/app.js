@@ -18,6 +18,9 @@ createApp ({
     data() {
         return{
             currentPage: 'home',
+            localSearchTerm : '',
+            currentTheme : 'theme-light',
+            currentFont : ''
         }
     },
 
@@ -25,6 +28,15 @@ createApp ({
         showPage(page) {
             this.currentPage = page;
         },
+        handleSearch(newSearchTerm){
+            this.localSearchTerm = newSearchTerm
+        },
+        handleTheme(newTheme){
+            this.currentTheme = newTheme
+        },
+        handleFont(newFont){
+            this.currentFont = newFont
+        }
     },
 
 }).mount("#app");

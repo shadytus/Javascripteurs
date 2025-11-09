@@ -45,12 +45,27 @@ export default {
                 </nav>
             </section>
             <section class="nav-actions">
-                <button class="audio-btn"><a href="article.html">ARTICLES</a></button>
-                <button class="read-btn"><a href="custom.html">CUSTOM_ARTICLES</a></button>
-                <button class="search-btn">🔍</button>
-                <button class="accessibility-btn">Aa</button>
-                <button class="theme-btn">🌙</button>
-                <button class="menu-btn">☰</button>
+                <button class="audio-btn"><a href="#" @click.prevent="$parent.showPage('home')">ARTICLES</a></button>
+                <button class="read-btn"><a href="#" @click.prevent="$parent.showPage('custom')">CUSTOM_ARTICLES</a></button>
+
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="🔍"
+                    v-model="localSearchTerm"
+                    @input="onSearchInput">
+
+                <select class="font-select" v-model="selectedFont" @change="onFontChange">
+                    <option value="" disabled>Aa</option>
+                    <option value="font-arial">Arial</option>
+                    <option value="font-times">Times</option>
+                    <option value="font-consolas">Consolas</option>
+                </select>
+                <select class="theme-select" v-model="selectedTheme" @change="onThemeChange">
+                    <option value="theme-light">☀️</option>
+                    <option value="theme-dark">🌙</option>
+                    <option value="theme-rose">🌹</option>
+                </select>
             </section>
         </section>
     </header>
@@ -58,7 +73,24 @@ export default {
     data(){
         return {
             localSearchTerm : '',
-            
+            currentTheme : 'theme-light',
+            currentFont : ''
+        }
+    },
+
+    methods: {
+        onSearchInput() {
+        // Émet un événement "update-search" avec la valeur de l'input
+            this.$emit('update-search', this.localSearchTerm);
+        },
+        // Appelé quand tu changes le <select> de thème
+        onThemeChange() {
+            this.$emit('update-theme', this.selectedTheme);
+        },
+        // Appelé quand tu changes le <select> de police
+        onFontChange() {
+            this.$emit('update-font', this.selectedFont);
         }
     }
+
 }

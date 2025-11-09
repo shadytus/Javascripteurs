@@ -23,7 +23,7 @@ export default {
         page    :{
             type        :String,
             required    :true,
-        },
+        }
     },
     data() {
         

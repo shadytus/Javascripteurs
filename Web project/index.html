@@ -21,10 +21,15 @@
 
 </head>
 <body id="app">
-    <press-menu></press-menu>
+    <press-menu>
+        @update-search="handleSearch"
+        @update-theme="handleTheme"
+        @update-font="handleFont"
+    </press-menu>
 
     <article-list 
-        :page="currentPage">
+        :page="currentPage"
+        :search-query="searchTerm">
     </article-list>
 
     <site-footer></site-footer>
