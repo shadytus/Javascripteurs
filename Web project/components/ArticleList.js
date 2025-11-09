@@ -66,7 +66,7 @@ export default {
                     </section>`,  
                     image : "39e98420b5e98bfbdc8a619bef7b8f61-1740665779",
                     author : "Adrien Corbeel",
-                    // category : Culture ,
+                    category : "Culture" ,
                     type : "breaking"
                 },
                 {
