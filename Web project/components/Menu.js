@@ -52,6 +52,8 @@ export default {
             <section class="nav-actions">
                 <button class="audio-btn"><a href="#" @click.prevent="$parent.showPage('home')">ARTICLES</a></button>
                 <button class="read-btn"><a href="#" @click.prevent="$parent.showPage('custom')">CUSTOM_ARTICLES</a></button>
+                <button class="read-btn"><a href="#" @click.prevent="$parent.showPage('conception')">CONCEPTION</a></button>
+                
 
                 <input 
                     type="text" 

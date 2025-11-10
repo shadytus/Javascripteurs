@@ -4,6 +4,7 @@ import ArticleList from "./components/ArticleList.js";
 import Menu from "./components/Menu.js";
 import About from "./components/Footer.js";
 import SiteFooter from "./components/Footer.js";
+import Conception from "./components/Conception.js";
 
 createApp ({
     name: "App",
@@ -13,6 +14,7 @@ createApp ({
         About,
         'press-menu': Menu,
         SiteFooter,
+        Conception
     },
 
     data() {
