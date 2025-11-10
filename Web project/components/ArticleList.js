@@ -35,7 +35,7 @@ export default {
                        @click.prevent="showArticleDetails(article)">
                         
                         <article class="sidebar-item">
-                            <img :src="'./media/' + article.image + '.jpg'" alt="Sidebar Image">
+                            <img :src="article.image" alt="Sidebar Image">
                             <div class="text">
                                 <span class="tag">{{ article.category }}</span>
                                 <h3><strong>{{ article.title }}</strong></h3>
@@ -49,7 +49,7 @@ export default {
                 <section class="bottom-grid" aria-label="Culture" v-show="showMainArticles">
                     <article class="card" v-for="article in culturalArticles" :key="article.id">
                         <a href="#" @click.prevent="showArticleDetails(article)">
-                            <img :src="'./media/' + article.image + '.jpg'" alt="">
+                            <img :src="article.image" alt="">
                             <span class="tag gray">{{ article.category }}</span>
                             <h3><strong>{{ article.title }}</strong></h3>
                             <h4 v-html="article.resume"></h4>
@@ -61,7 +61,7 @@ export default {
                 <section class="bottom-mini" aria-label="Bibliographie" v-show="showSideArticles">
                     <article class="card small" v-for="article in biblioArticles" :key="article.id">
                         <a href="#" @click.prevent="showArticleDetails(article)">
-                            <img :src="'./media/' + article.image + '.jpg'" alt="">
+                            <img :src="article.image" alt="">
                             <h3><strong>{{ article.title }}</strong></h3>
                             <h4 v-html="article.resume"></h4>
                         </a>
@@ -121,7 +121,7 @@ export default {
                     <p>On peut Ã©galement citer "Au Risque de se Perdre", mÃ©lodrame de 1958 avec Audrey Hepburn, dans lequel celle-ci joue une nonne dans un couvent brugeois, mais aussi la comÃ©die de science-fiction bollywoodienne "PK", qui a Ã©tÃ© un Ã©norme succÃ¨s en Inde, ou encore la sÃ©rie britannique "The White Queen".
                     </p>
                     </section>`,  
-                    image : "39e98420b5e98bfbdc8a619bef7b8f61-1740665779",
+                    image : "/media/39e98420b5e98bfbdc8a619bef7b8f61-1740665779.webp",
                     author : "Adrien Corbeel",
                     category : "Culture" ,
                     type : "breaking"
@@ -372,12 +372,12 @@ export default {
                 article.resume.toLowerCase().includes(query)
             );
         },
-        media_path(){
-            if (this.selectedArticle){
-                return `/media/${this.selectedArticle.image}`
-            }
-            else return null;
-        },
+        // media_path(){
+        //     if (this.selectedArticle){
+        //         return `/media/${this.selectedArticle.image}`
+        //     }
+        //     else return null;
+        // },
         breakingNewsArticle(){
             return this.filteredArticles.find(article => article.type === 'breaking');
         },
