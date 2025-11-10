@@ -3,9 +3,23 @@ export default {
 
     template: `
         <main v-show="this.page == 'home'">
+
+            <div class="article-toggles" style="padding: 10px; text-align: center; background: #eee;">
+                
+                <button @click="toggleMainArticles" class="toggle-button">
+                    {{ showMainArticles ? 'Masquer' : 'Afficher' }} les articles principaux 
+                    ({{ mainArticlesCount }})
+                </button>
+                
+                <button @click="toggleSideArticles" class="toggle-button">
+                    {{ showSideArticles ? 'Masquer' : 'Afficher' }} les articles secondaires 
+                    ({{ sideArticlesCount }})
+                </button>
+                
+            </div>
             
             <main class="container">
-                <article class ="breaking-news" v-if="breakingNewsArticle">
+                <article class ="breaking-news" v-if="breakingNewsArticle" v-show="showMainArticles">
                     <a href="#" @click.prevent="showArticleDetails(breakingNewsArticle)">
                         <img :src="breakingNewsArticle.image" alt="Breaking News Image">
                         <nav class="text">
@@ -14,7 +28,7 @@ export default {
                         </nav>
                     </a>
                 </article>
-                <aside class="sidebar" aria-label="Portraits">
+                <aside class="sidebar" aria-label="Portraits" v-show="showSideArticles">
                     <a href="#" 
                        v-for="article in portraitArticles" 
                        :key="article.id" 
@@ -31,7 +45,7 @@ export default {
                 </aside>
                 
         
-                <section class="bottom-grid" aria-label="Culture">
+                <section class="bottom-grid" aria-label="Culture" v-show="showMainArticles">
                     <article class="card" v-for="article in culturelArticles" :key="article.id">
                         <a href="#" @click.prevent="showArticleDetails(article)">
                             <img :src="'./media/' + article.image + '.jpg'" alt="">
@@ -42,7 +56,7 @@ export default {
                 </section>
         
         
-                <section class="bottom-mini" aria-label="Bibliographie">
+                <section class="bottom-mini" aria-label="Bibliographie" v-show="showSideArticles">
                     <article class="card small" v-for="article in biblioArticles" :key="article.id">
                         <a href="#" @click.prevent="showArticleDetails(article)">
                             <img :src="'./media/' + article.image + '.jpg'" alt="">
@@ -67,7 +81,8 @@ export default {
         
         return {
             selectedArticle : null,
-            showStandardArticles: true, 
+            showMainArticles: true,
+            showSideArticles: true, 
             articles : [
                 {
                     id : 1,
@@ -138,9 +153,8 @@ export default {
                     title: "Benoît Poelvoorde, l'acteur qui fait rire l'Europe",
                     resume: `
                     <section class="Art">
-                   <h2>Benoît Poelvoorde, figure singulière du cinéma belge</h2>
-                   <p>Benoît Poelvoorde est un acteur, scénariste et humoriste belge né à Namur en 1964. Révélé par le film culte <em>C’est arrivé près de chez vous</em>, il s’impose rapidement comme une figure incontournable du cinéma comique franco-belge. Son style excentrique et son jeu intense séduisent autant dans la comédie que dans le drame, comme en témoignent ses rôles dans <em>Podium</em>, <em>Entre ses mains</em> ou <em>Coco avant Chanel</em>. Reconnu pour sa personnalité attachante et imprévisible, il reste l’un des artistes les plus marquants et atypiques du cinéma francophone.</p>
-                   </section>`,
+                    <p>Benoît Poelvoorde est un acteur, scénariste et humoriste belge né à Namur en 1964. Révélé par le film culte <em>C’est arrivé près de chez vous</em>, il s’impose rapidement comme une figure incontournable du cinéma comique franco-belge. Son style excentrique et son jeu intense séduisent autant dans la comédie que dans le drame, comme en témoignent ses rôles dans <em>Podium</em>, <em>Entre ses mains</em> ou <em>Coco avant Chanel</em>. Reconnu pour sa personnalité attachante et imprévisible, il reste l’un des artistes les plus marquants et atypiques du cinéma francophone.</p>
+                    </section>`,
                     body: `
                     <section class="Art">
                     <p><strong>De "C'est arrivé près de chez vous" aux comédies françaises, Benoît Poelvoorde s'est imposé comme l'une des figures majeures du cinéma francophone.</strong></p>
@@ -372,7 +386,19 @@ export default {
         },
         biblioArticles(){
             return this.filteredArticles.filter(article => article.type === 'article bibliographique');
+        },
+        mainArticlesCount() {
+            // S'assure que les listes existent avant de compter
+            const breaking = this.breakingNewsArticle ? 1 : 0;
+            const cultural = this.culturalArticles ? this.culturalArticles.length : 0;
+            return breaking + cultural;
+        },
+        sideArticlesCount() {
+            const portrait = this.portraitArticles ? this.portraitArticles.length : 0;
+            const biblio = this.biblioArticles ? this.biblioArticles.length : 0;
+            return portrait + biblio;
         }
+
     },
 
     methods: {
@@ -384,11 +410,18 @@ export default {
             console.log("cacher article "+ article.id),
             this.selectedArticle = null
         },
-        toggleStandardArticles() {
-            this.showStandardArticles = !this.showStandardArticles;
-        },
         showArticleDetails(article) {
             this.$emit('show-details', article);
+        },
+        hideArticleDetails() {
+            console.log("cacher article");
+            this.selectedArticle = null;
+        },
+        toggleMainArticles() {
+            this.showMainArticles = !this.showMainArticles;
+        },
+        toggleSideArticles() {
+            this.showSideArticles = !this.showSideArticles;
         }
     }
 }
