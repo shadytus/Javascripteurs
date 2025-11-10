@@ -38,6 +38,7 @@ export default {
                             <img :src="'./media/' + article.image + '.jpg'" alt="Sidebar Image">
                             <div class="text">
                                 <span class="tag">{{ article.category }}</span>
+                                <h3><strong>{{ article.title }}</strong></h3>
                                 <h4 v-html="article.resume"></h4>
                             </div>
                         </article>
@@ -46,10 +47,11 @@ export default {
                 
         
                 <section class="bottom-grid" aria-label="Culture" v-show="showMainArticles">
-                    <article class="card" v-for="article in culturelArticles" :key="article.id">
+                    <article class="card" v-for="article in culturalArticles" :key="article.id">
                         <a href="#" @click.prevent="showArticleDetails(article)">
                             <img :src="'./media/' + article.image + '.jpg'" alt="">
                             <span class="tag gray">{{ article.category }}</span>
+                            <h3><strong>{{ article.title }}</strong></h3>
                             <h4 v-html="article.resume"></h4>
                         </a>
                     </article>
@@ -60,6 +62,7 @@ export default {
                     <article class="card small" v-for="article in biblioArticles" :key="article.id">
                         <a href="#" @click.prevent="showArticleDetails(article)">
                             <img :src="'./media/' + article.image + '.jpg'" alt="">
+                            <h3><strong>{{ article.title }}</strong></h3>
                             <h4 v-html="article.resume"></h4>
                         </a>
                     </article>
@@ -363,7 +366,10 @@ export default {
             };
         const query = this.searchQuery.toLowerCase();
         return this.articles.filter(
-                article => article.title.toLowerCase().includes(query)
+                article => 
+                article.title.toLowerCase().includes(query) ||
+                article.body.toLowerCase().includes(query) ||
+                article.resume.toLowerCase().includes(query)
             );
         },
         media_path(){

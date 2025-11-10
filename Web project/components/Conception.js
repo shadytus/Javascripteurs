@@ -28,7 +28,7 @@ export default {
             
             <h2>Fonctionnalités Implémentées</h2>
             <ul>
-                <li><strong>Composants Vue :</strong> L'application est découpée en composants réutilisables (Menu, ArticleList, Footer).</li>
+                <li><strong>Composants Vue :</strong> L'application est découpée en composants réutilisables (Menu, ArticleList, Footer, Conception et Article).</li>
                 <li><strong>État Centralisé :</strong> Un fichier app.js sert de "cerveau" et gère l'état global.</li>
                 <li><strong>Affichage Dynamique :</strong> Les listes d'articles sont générées avec v-for à partir d'un tableau de données.</li>
                 <li><strong>Interactivité :</strong> Implémentation de filtres, de changement de thème (light/dark) et de police.</li>
