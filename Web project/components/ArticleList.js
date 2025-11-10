@@ -3,9 +3,8 @@ export default {
 
     template: `
         <main v-show="this.page == 'home'">
-        
+            
             <main class="container">
-
                 <article class ="breaking-news" v-if="breakingNewsArticle">
                     <a href="#" @click.prevent="showArticleDetails(breakingNewsArticle)">
                         <img :src="breakingNewsArticle.image" alt="Breaking News Image">
@@ -53,7 +52,6 @@ export default {
                 </section>
             </main>
         </main>
-
         `,
     props : {
         page    :{
@@ -69,14 +67,15 @@ export default {
         
         return {
             selectedArticle : null,
+            showStandardArticles: true, 
             articles : [
                 {
                     id : 1,
                     title : "Ces coins de Belgique dont le cinéma raffole",
                     resume : `
-                        <section class="Art">
-                        <p><strong>De nombreux tournages se déroulent en Belgique. Petit tour des lieux les plus prisés par le septième art.</strong></p>
-                        </section>
+                    <section class="Art">
+                    <p><strong>De nombreux tournages se déroulent en Belgique. Petit tour des lieux les plus prisés par le septième art.</strong></p>
+                    </section>
                     `,
                     body : `
                     <section class="Art">
@@ -84,7 +83,7 @@ export default {
                     </section>
                     <section class="Art">
                     <h3>Les Ardennes</h3>
-                    <p>Les forÃªts immenses et les collines pentues des Ardennes belges inspirent de nombreux cinÃ©astes. Câ€™est bien simple, on ne compte plus les films qui sâ€™y dÃ©roulent, ou lâ€™utilisent comme dÃ©cor. Parmi tous les longs et courts-mÃ©trages existants, on peut notamment citer "Les GÃ©ants". Le drame de Bouli Lanners place trois adolescents dÃ©sÅ“uvrÃ©s dans son cadre ardennais. LivrÃ©s Ã  eux-mÃªmes, les 3 garÃ§ons se retrouvent emportÃ©s, et nous avec, dans une grande aventure.
+                    <p>Les forÃªts immenses et les collines pentues des Ardennes belges inspirent de nombreux cinÃ©astes. Câ€™est bien simple, on ne compte plus les films qui sâ€™y dÃ©roulent, ou lâ€™utilisent comme dÃ©cor. Parmi tous les longs et courts-mÃ©trages existants, on peut notamment citer "Les GÃ©ants". Le drame de Bouli Lanners place trois adolescents dÃ©sÅ“uvrÃ©s dans son cadre ardennais. LivrÃ©s Ã  eux-mÃªmes, les 3 garÃ§ons se retrouvent emportÃ©s, et nous avec, dans une grande aventure.
                     </p>
                     <p>Le cinÃ©aste belge Robin Pront semble lui aussi avoir Ã©tÃ© inspirÃ© par la rÃ©gion, puisquâ€™il a dÃ©cidÃ© de baptiser son premier long-mÃ©trage "Dâ€™Ardennen". Sorti en 2016, ce thriller poisseux fait des Ardennes le cadre fatidique de son drame criminel.
                     </p>
@@ -92,9 +91,9 @@ export default {
                     <section class="Art">
                     <h3>La Gare de LiÃ¨ge
                     </h3>
-                    <p>Le saviez-vous ? La Gare de LiÃ¨ge-Guillemins apparaÃ®t dans le premier volet des "Gardiens de la Galaxie" ! Le dÃ´me de Calatrava a tapÃ© dans lâ€™Å“il du studio Marvel, qui a intÃ©grÃ© lâ€™architecture futuriste de la gare au dÃ©cor de planÃ¨te Xandar, oÃ¹ les antihÃ©ros du film se rencontrent. Mais attention : ni Chris Pratt ni Zoe Saldana ne se sont rendus sur place. Ce sont les Ã©quipes des effets spÃ©ciaux qui ont scannÃ© lâ€™ensemble de la structure. On aperÃ§oit aussi briÃ¨vement la gare dans le film de science-fiction "Gemini Man" oÃ¹ Will Smith joue un double rÃ´le. LÃ  non plus, le tournage ne sâ€™est pas fait en Belgique.
+                    <p>Le saviez-vous ? La Gare de LiÃ¨ge-Guillemins apparaÃ®t dans le premier volet des "Gardiens de la Galaxie" ! Le dÃ´me de Calatrava a tapÃ© dans lâ€™Å“il du studio Marvel, qui a intÃ©grÃ© lâ€™architecture futuriste de la gare au dÃ©cor de planÃ¨te Xandar, oÃ¹ les antihÃ©ros du film se rencontrent. Mais attention : ni Chris Pratt ni Zoe Saldana ne se sont rendus sur place. Ce sont les Ã©quipes des effets spÃ©ciaux qui ont scannÃ© lâ€™ensemble de la structure. On aperÃ§oit aussi briÃ¨vement la gare dans le film de science-fiction "Gemini Man" oÃ¹ Will Smith joue un double rÃ´le. LÃ  non plus, le tournage ne sâ€™est pas fait en Belgique.
                     </p>
-                    <p>En revanche, Jean Dujardin sâ€™est bien rendu Ã  LiÃ¨ge pour tourner une scÃ¨ne de la comÃ©die "Un homme Ã  la hauteur", tout comme Daniel BrÃ¼hl, dans une sÃ©quence du thriller "Le CinquiÃ¨me Pouvoir" sur Julian Assange. Dans ce dernier film, la gare "joue son propre rÃ´le" : les personnages sont bien dans la station de trains de la citÃ© ardente plutÃ´t que sur une autre planÃ¨te.
+                    <p>En revanche, Jean Dujardin sâ€™est bien rendu Ã  LiÃ¨ge pour tourner une scÃ¨ne de la comÃ©die "Un homme Ã  la hauteur", tout comme Daniel BrÃ¼hl, dans une sÃ©quence du thriller "Le CinquiÃ¨me Pouvoir" sur Julian Assange. Dans ce dernier film, la gare "joue son propre rÃ´le" : les personnages sont bien dans la station de trains de la citÃ© ardente plutÃ´t que sur une autre planÃ¨te.
                     </p>
                     </section>
                     <section class="Art">
@@ -190,7 +189,6 @@ export default {
                     title: "Matthias Schoenaerts, l'étoile montante du cinéma belge",
                     resume : `
                     <section class="Art">
-                    <h2>Matthias Schoenaerts, l'étoile montante du cinéma belge</h2>
                     <p>Matthias Schoenaerts, né à Anvers en 1977, est un acteur belge reconnu pour son intensité et sa polyvalence. Il s'est imposé sur la scène internationale grâce à des rôles puissants dans des films tels que <em>De Rouille et d’Os</em>, <em>Bullhead</em> et <em>The Danish Girl</em>. Sa capacité à incarner des personnages complexes et nuancés fait de lui une figure montante du cinéma belge et européen, saluée par la critique et le public.</p>
                     </section>`,
                     body: `
@@ -386,7 +384,11 @@ export default {
             console.log("cacher article "+ article.id),
             this.selectedArticle = null
         },
+        toggleStandardArticles() {
+            this.showStandardArticles = !this.showStandardArticles;
+        },
+        showArticleDetails(article) {
+            this.$emit('show-details', article);
+        }
     }
-
 }
-
