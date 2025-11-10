@@ -143,7 +143,7 @@ export default {
                     <h3>Un cinéma engagé</h3>
                     <p>Films après films, les Dardenne explorent les thèmes de la précarité, de l'immigration et de la rédemption. "Le Gamin au vélo", "Deux jours, une nuit" avec Marion Cotillard, ou encore "Le Jeune Ahmed" témoignent de leur engagement constant pour un cinéma humaniste et social.</p>
                     </section>`,
-                    // image :,
+                    image : "Frères_Dardenne_Cannes_2015.jpg",
                     author : "Benoît Poelvoorde",
                     category : "cinema",
                     type : "portrait"
@@ -168,7 +168,7 @@ export default {
                     <h3>Entre Belgique et France</h3>
                     <p>Poelvoorde navigue ensuite entre productions belges et françaises, incarnant des personnages décalés dans "Les Convoyeurs attendent", "Le Tout Nouveau Testament", ou côté français dans "Podium", "Rien à déclarer" ou "Au service de la France".</p>
                     </section>`,
-                    // image :,
+                    image :"benoit-poelvoorde.jpg",
                     author : "Benoît Poelvoorde" ,
                     category : "cinema",
                     type : "portrait"
@@ -193,7 +193,7 @@ export default {
                     <p>La Belgique excelle également dans l'animation en stop-motion. Des réalisateurs comme Vincent Patar et Stéphane Aubier ont créé "Panique au village", série et film au succès critique remarquable. Leur univers décalé et poétique a conquis un large public.</p>
                     <p>"Ernest et Célestine", adapté des albums de Gabrielle Vincent, a été nommé aux Oscars en 2014. Ce film d'animation traditionnel célèbre la douceur et l'amitié entre un ours et une souris.</p>
                     </section>`,
-                    // image :,
+                    image : "20221011_FFGENT22_©Jeroen Willems_088.jpg",
                     author : "Ernest et Célestine" ,
                     category : "cinema",
                     type : "article bibliographique"
@@ -218,7 +218,7 @@ export default {
                     <h3>Une carrière internationale</h3>
                     <p>Schoenaerts enchaîne ensuite les productions prestigieuses : "De rouille et d'os" avec Marion Cotillard, "The Danish Girl", "Red Sparrow" avec Jennifer Lawrence, ou encore "The Old Guard" sur Netflix. Il reste néanmoins attaché au cinéma européen, tournant régulièrement en Belgique et en France.</p>
                     </section>`,
-                    // image :,
+                    image : "44278633.jpg",
                     author : "contricuteurs",
                     category : "cinema",
                     type : "article bibliographique"
@@ -243,7 +243,7 @@ export default {
                     <p>"Mr. Nobody", sorti en 2009, est une œuvre ambitieuse avec Jared Leto explorant les choix de vie et les destins multiples. Le film, tourné en Belgique et en Allemagne, devient un film culte pour toute une génération grâce à sa profondeur philosophique.</p>
                     <p>"Le Tout Nouveau Testament" en 2015 propose une relecture décalée et humoristique de la religion, où Dieu vit à Bruxelles et se comporte comme un despote mesquin. Le film rencontre un succès international et confirme le talent unique de Van Dormael.</p>
                     </section>`,
-                    // image :,
+                    image : "Jaco_Van_Dormael_6751.jpg",
                     author : "contributeurs",
                     category : "cinema",
                     type : "article bibliographique"
@@ -268,7 +268,7 @@ export default {
                     <h3>Focus sur le cinéma mondial</h3>
                     <p>Chaque édition met à l'honneur le cinéma d'un pays ou d'une région spécifique, permettant au public belge de découvrir des œuvres rares et des cinématographies méconnues. Le festival organise également des masterclasses et des rencontres avec des réalisateurs de renom.</p>
                     </section>`,
-                    // image :,
+                    image : "fe335ffdeb398c2ace98451425269882-1709744386.webp",
                     author : "contricuteurs",
                     category : "cinema",
                     type : "article" 
@@ -293,7 +293,7 @@ export default {
                     <h3>Une filmographie éclectique</h3>
                     <p>De "Haute tension" à "Hereafter" de Clint Eastwood, de "Möbius" à "Django", Cécile de France navigue entre registres et genres avec une aisance remarquable. Elle n'hésite pas à revenir au cinéma belge, comme dans "Le Gamin au vélo" des frères Dardenne, où elle livre une prestation sobre et émouvante.</p>
                     </section>`,
-                    // image :,
+                    image :"ce-cile-de-france.jpg",
                     author: "contributeurs",
                     category : "cinema",
                     type : "article"
@@ -318,7 +318,7 @@ export default {
                     <p>"Largo Winch", créé par Jean Van Hamme et Philippe Francq, a donné lieu à deux films d'action avec Tomer Sisley. "Le Chat" de Geluck a inspiré plusieurs courts-métrages animés diffusés à la télévision.</p>
                     <p>Plus récemment, "Valérian et la Cité des mille planètes" de Luc Besson, adapté de la série franco-belge de Christin et Mézières, a bénéficié d'un budget colossal, même si le résultat commercial fut décevant. Ces adaptations montrent la richesse du patrimoine BD belge et son potentiel cinématographique.</p>
                     </section>`,
-                    // image :,
+                    image : "maxresdefault-1-800x445.jpg",
                     author : "contributeurs",
                     category : "bande dessinée belge",
                     type : "culturel"
