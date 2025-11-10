@@ -76,9 +76,6 @@ export default {
                 {
                     id : 2,
                     title : "<section class="Art">
-                   <h2>Benoît Poelvoorde, figure singulière du cinéma belge</h2>
-                   <p>Benoît Poelvoorde est un acteur, scénariste et humoriste belge né à Namur en 1964. Révélé par le film culte <em>C’est arrivé près de chez vous</em>, il s’impose rapidement comme une figure incontournable du cinéma comique franco-belge. Son style excentrique et son jeu intense séduisent autant dans la comédie que dans le drame, comme en témoignent ses rôles dans <em>Podium</em>, <em>Entre ses mains</em> ou <em>Coco avant Chanel</em>. Reconnu pour sa personnalité attachante et imprévisible, il reste l’un des artistes les plus marquants et atypiques du cinéma francophone.</p>
-                   </section>",
                     resume:`<section class="Art">
                             <h2>Les frères Dardenne, fierté du cinéma belge</h2>
                             <p>Jean-Pierre et Luc Dardenne sont des figures emblématiques du cinéma belge et mondial. Leur approche réaliste et sociale, caractérisée par des plans longs, un son naturel et peu de musique, a valu à leurs films de nombreuses récompenses, dont deux Palmes d'Or à Cannes. À travers des œuvres comme <em>Rosetta</em>, <em>L'Enfant</em> ou <em>Le Jeune Ahmed</em>, ils explorent des thèmes sociaux profonds tels que la pauvreté, l'immigration et la résilience, confirmant leur rôle de pionniers du cinéma d'auteur.</p>
@@ -104,6 +101,7 @@ export default {
                 {
                     id: 3,
                     title: "Benoît Poelvoorde, l'acteur qui fait rire l'Europe",
+                    resume
                     <section class="Art">
                    <h2>Benoît Poelvoorde, figure singulière du cinéma belge</h2>
                    <p>Benoît Poelvoorde est un acteur, scénariste et humoriste belge né à Namur en 1964. Révélé par le film culte <em>C’est arrivé près de chez vous</em>, il s’impose rapidement comme une figure incontournable du cinéma comique franco-belge. Son style excentrique et son jeu intense séduisent autant dans la comédie que dans le drame, comme en témoignent ses rôles dans <em>Podium</em>, <em>Entre ses mains</em> ou <em>Coco avant Chanel</em>. Reconnu pour sa personnalité attachante et imprévisible, il reste l’un des artistes les plus marquants et atypiques du cinéma francophone.</p>
