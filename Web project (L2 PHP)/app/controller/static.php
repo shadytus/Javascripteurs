@@ -9,7 +9,7 @@ function main_static(): string
         <h2>{$content['titre']}</h2>
         <p>{$content['description']}</p>
 
-        <h3>✅ Fonctionnalités implantées</h3>
+        <h3>Fonctionnalités implantées</h3>
         <ul>
     HTML;
 
@@ -19,7 +19,7 @@ function main_static(): string
 
     $html .= <<<HTML
         </ul>
-        <h3>🔜 En cours</h3>
+        <h3> En cours</h3>
         <ul>
     HTML;
 
