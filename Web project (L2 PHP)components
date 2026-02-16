@@ -1,18 +1,1 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title><?php echo $titre; ?></title>
-    <link rel="stylesheet" href="main.css">
-</head>
-<body>
 
-<header>
-    <h1>Mon Site</h1>
-</header>
-
-<nav>
-    <a href="index.php">Accueil</a>
-    <a href="article.php">Article</a>
-    <a href="custom.php">Custom</a>
-</nav>
