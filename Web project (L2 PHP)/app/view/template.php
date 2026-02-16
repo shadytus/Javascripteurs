@@ -1,1 +1,48 @@
+<?php
+function html_head(array $menu_a): string
+{
+    $menu_html = '';
+    foreach ($menu_a as $item) {
+        $menu_html .= "<a href='index.php?page={$item['page']}'>{$item['label']}</a>\n";
+    }
 
+    return <<<HTML
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Javascripteurs - Site de presse</title>
+        <link rel="stylesheet" href="./css/main.css">
+    </head>
+    <body>
+    <header>
+        <h1>📰 Javascripteurs</h1>
+        <div id="mouse-coords">🖱️ x: 0, y: 0</div>
+        <button id="toggle-articles">Masquer articles</button>
+    </header>
+    <nav>
+        {$menu_html}
+    </nav>
+    <main>
+    HTML;
+}
+
+function html_foot(): string
+{
+    return <<<HTML
+    </main>
+    <footer>
+        <p>© 2025 Javascripteurs - Projet L2 PHP</p>
+    </footer>
+    <script src="./js/main.js"></script>
+    </body>
+    </html>
+    HTML;
+}
+
+function html_body(): string
+{
+    return '';
+}
+```
