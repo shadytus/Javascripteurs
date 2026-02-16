@@ -62,14 +62,4 @@ function main_search(): string
         html_foot(),
     ]);
 }
-```
 
-**3.** Message : `feat: controller recherche` ✅
-
----
-
-### FICHIER 4 — `app/model/search.php`
-
-**1.** Nom :
-```
-app/model/search.php
