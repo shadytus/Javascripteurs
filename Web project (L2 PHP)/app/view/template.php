@@ -1,5 +1,7 @@
 <?php
-function html_head(array $menu_a): string
+function html_head($user_html = isset($_SESSION['user'])
+    ? "👤 Bonjour <strong>{$_SESSION['user']['nom']}</strong> | <a href='index.php?page=logout'>Déconnexion</a>"
+    : "👤 <a href='index.php?page=login'>Non identifié</a>";): string
 {
     $menu_html = '';
     foreach ($menu_a as $item) {
@@ -18,6 +20,7 @@ function html_head(array $menu_a): string
     <body>
     <header>
         <h1>📰 Javascripteurs</h1>
+        <div id="user-info">{$user_html}</div>
         <div id="mouse-coords">🖱️ x: 0, y: 0</div>
         <button id="toggle-articles">Masquer articles</button>
     </header>
