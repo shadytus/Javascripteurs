@@ -11,7 +11,10 @@ function main_press(): string
             <h3>{$article['title_art']}</h3>
             <p class="accroche">{$article['accroche_art']}</p>
             <a href="index.php?page=article&id={$article['id_art']}">Lire la suite</a>
-            <button class="btn-favori" data-id="{$article['id_art']}">⭐ Favori</button>
+            <form method="POST" action="index.php?page=favoris">
+    <input type="hidden" name="id" value="{$article['id_art']}">
+    <button name="action" value="add">⭐ Ajouter aux favoris</button>
+</form>
         </article>
         HTML;
     }
