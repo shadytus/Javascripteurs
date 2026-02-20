@@ -32,6 +32,23 @@ function html_foot(): string
 {
     return <<<HTML
     </main>
+     $banner = '';
+     $url    = 'http://playground.burotix.be/adv/banner_for_isfce.json';
+    $result = @file_get_contents($url);
+    if ($result) {
+        $data   = json_decode($result, true);
+        $text   = htmlspecialchars($data['text']   ?? '');
+        $image  = htmlspecialchars($data['image']  ?? '');
+        $color  = htmlspecialchars($data['color']  ?? '#f0f0f0');
+        $image2 = htmlspecialchars($data['image2'] ?? '');
+        $banner = <<<HTML
+        <aside class="banner" style="background-color:{$color};">
+            <img src="{$image}" alt="Sponsor">
+            <p>{$text}</p>
+            <img src="{$image2}" alt="Sponsor 2">
+        </aside>
+        HTML;
+    }
     <footer>
         <p>© 2025 Javascripteurs - Projet L2 PHP</p>
     </footer>
