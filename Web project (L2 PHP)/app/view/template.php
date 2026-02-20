@@ -40,6 +40,24 @@ function html_foot(): string
     </html>
     HTML;
 }
+function get_banner(): string
+{
+    $url  = 'http://playground.burotix.be/adv/banner_for_isfce.json';
+    $json = @file_get_contents($url);
+    if (!$json) return '';
+
+    $data = json_decode($json, true);
+    $text  = htmlspecialchars($data['text']  ?? '');
+    $image = htmlspecialchars($data['image'] ?? '');
+    $color = htmlspecialchars($data['color'] ?? '#f0f0f0');
+
+    return <<<HTML
+    <aside class="banner" style="background-color:{$color}">
+        <img src="{$image}" alt="Publicité">
+        <p>{$text}</p>
+    </aside>
+    HTML;
+}
 
 function html_body(): string
 {
