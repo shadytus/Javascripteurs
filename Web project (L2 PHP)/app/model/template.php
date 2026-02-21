@@ -10,4 +10,3 @@ function get_menu(): array
         ['label' => 'À propos',   'page' => 'static'],
     ];
 }
-```
