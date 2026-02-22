@@ -83,4 +83,3 @@ function html_body(): string
 {
     return '';
 }
-```
