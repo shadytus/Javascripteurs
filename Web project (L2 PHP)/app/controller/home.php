@@ -12,4 +12,3 @@ function main_home(): string
         html_foot(),
     ]);
 }
-```
