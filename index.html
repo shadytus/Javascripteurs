@@ -4,250 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portugal_noticias</title>
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="/main.css">
 
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="lib/fontawesome/all.min.css">
 
     <script rel="stylesheet" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+      }
+    </script>
+    <script type="module" src="app.js"></script>
+
 </head>
-<body>
-    <header class="jn-header">
-        <section class="header-logo">
-            <a>
-                <img src="media/noticias.jpg">
-            </a>
-        </section>
-        <section class="header-top">
-            <section class="header-left">
-            
-                <nav>
-                    <a href="#">JN</a>
-                    <a href="#">TSF</a>
-                    <a href="#">O Jogo</a>
-                    <a href="#">Evasões</a>
-                    <a href="#">Volta ao Mundo</a>
-                    <a href="#">NM</a>
-                    <a href="#">N-TV</a>
-                    <a href="#">Delas</a>
-                </nav>
-            </section>
-            
-            <section class="header-right">
-                <nav>
-                    <a href="#">Classificados</a>
-                    <a href="#"><strong>ASSINAR</strong></a>
-            
-                </nav>
-            </section>
-        </section>
-        <section class="logo-submit-section container d-flex justify-content-between align-items-center py-3">
-            <section class="logo">
-                <a href="index.html">
-                    <img src="media/logo.jpg">
-                </a>
-            </section>
-            <section class="header-left-2">
-                <nav>
-                    <a href="#"><strong>ÚLTIMAS</strong></a>
-                    <a href="#"><strong>JN DIRETO</strong></a>
-                    <a href="index.html"><strong>HOME</strong></a>
-                </nav>
-            </section>
-            <section class="nav-actions">
-                <button class="audio-btn"><a href="article.html">ARTICLES</a></button>
-                <button class="read-btn"><a href="custom.html">CUSTOM_ARTICLES</a></button>
-                <button class="search-btn">🔍</button>
-                <button class="accessibility-btn">Aa</button>
-                <button class="theme-btn">🌙</button>
-                <button class="menu-btn">☰</button>
-            </section>
-        </section>
-    </header>
-
-    <main class="container">
-    
-      <!-- Breaking News -->
-      
-        <article class="breaking-news">
-          <a href="article.html">
-          <img src="./media/articles.jpg" alt="Breaking News Image">
-          <nav class="text">
-            <h2><strong>Ces coins de Belgique dont le cinéma raffole: De nombreux tournages se déroulent en Belgique. Petit tour des lieux les plus prisés par le
-                        septième art.</strong></h2>
-          </nav>
-        </a>
-        </article>
-      
-  
-      <!-- Sidebar News -->
-      <aside class="sidebar" aria-label="Notícias Laterais">
-      <a href="#">
-         <article class="sidebar-item">
-          <img src="./media/Kamala.jpg" alt="Breaking News Image">
-          <div class="text">
-            <span class="tag">EXCLUSIVO · POLÉMICA</span>
-            <h4>Last summer, the City of Boston commissioned 44 local artists to paint City-owned utility boxes across 15.</h4>
-          </div>
-         </article>
-        </a>
+<body id="app">
+    <press-menu
+        @update-search="handleSearch"
+        @update-theme="handleTheme"
+        @update-font="handleFont"
         
-        <a href="#">
-        <article class="sidebar-item">
-          <img src="./media/Amazone.jpg" alt="Breaking News Image">
-          <div class="text">
-            <span class="tag">SAÚDE</span>
-            <h4>“Não podemos tirar ilações políticas”, conclui ministra sobre relatório da IGAS</h4>
-          </div>
-        </article>
-        </a>
-        <a href="#">
-        <article class="sidebar-item">
-          <img src="./media/Eleven.jpg" alt="Breaking News Image">
-          <div class="text">
-            <span class="tag">PROTEÇÃO CIVIL</span>
-            <h4>The Japanese conglomerate would provide immediate growth in the town</h4>
-          </div>
-        </article>
-      </a>
+        :mouse-x="mouseX"
+        :mouse-y="mouseY">
+    </press-menu>
 
-      <a href="#">
-        <article class="sidebar-item">
-          <img src="./media/rigio.jpg" alt="Breaking News Image">
-          <div class="text">
-            <span class="tag">Actualite</span>
-            <h4>Three new Spanish hotel projects are apace for groundbreaking later this year. The projects are expected to pump US$2.2 billion .</h4>
-          </div>
-        </article>
-      </a>
-      </aside>
-      
-  
-      <!-- Bottom Left Grid -->
-      <section class="bottom-grid" aria-label="Notícias Principais Inferiores">
-        <article class="card">
-          <a href="#">
-          <img src="./media/foot.jpg" alt="">
-          <span class="tag gray">ULS</span>
-          <h4>Charleroi doit enchaîner à Westerlo après le choc wallon,Charleroi doit enchaîner à Westerlo après le choc wallon.</h4>
-          </a>
-        </article>
-        <article class="card">
-          <a href="#">
-          <img src="./media/greve.jpg" alt="">
-          <span class="tag orange">EM ATUALIZAÇÃO · CRIME</span>
-          <h4>Aluno de 13 anos ameaça com faca colegas e professores em escola de Sintra</h4>
-          </a>
-        </article>
-        <article class="card">
-          <a href="#">
-          <img src="./media/Trump.jpg" alt="">
-          <span class="tag gray">ROUBO</span>
-          <h4> Tout ce qui vient de Chine coûte désormais deux fois plus cher aux États-Unis</h4>
-          </a>
-        </article>
-        <article class="card">
-          <a href="#">
-          <img src="./media/Nuclear.jpg" alt="">
-          <span class="tag blue">PJ</span>
-          <h4> Modernisation du U.S. Nuclear Missile Silos</h4>
-          </a>
-        </article>
-        
-      </section>
-  
-      <!-- Bottom Right Mini Grid -->
-      <section class="bottom-mini" aria-label="Autres Actualités">
-        <article class="card small">
-          <a href="#">
-          <img src="./media/climat.jpg" alt="">
-          <h4>Tout ce qui vient de Chine coûte désormais deux fois plus cher aux États-Unis</h4>
-          </a>
-        </article>
-        <article class="card small">
-          <a href="#">
-          <img src="./media/greve2.jpg" alt="">
-          <h4>Première victoire syndicale !" : le mouvement de grogne dans l'enseignement se poursuit</h4>
-          </a>
-        </article>
-        <article class="card small">
-          <a href="#">
-          <img src="./media/festival.jpg" alt="">
-          <h4>Un festival pour les amateurs de bière ces vendredi et samedi 11 et 12 Avril</h4>
-          </a>
-        </article>
-       
-      </section>
-      
-  
-    </main>
+    <article-list 
+        :page="currentPage"
+        :search-query="searchTerm">
+    </article-list>
 
-    <footer>
-      <section class="container-footer">
-          <section class="row">
-              <section class="cont1">
-                  <hr class="a-separator visible-xs">
-                  <h5>About Us</h5>
-                  <ul>
-                      <li>About 1</li>
-                      <li>About 2</li>
-                      <li>About 3</li>
-                  </ul>
-                  
-              </section>
-              <section class="cont1">
-                  <hr class="a-separator visible-xs">
-                  <h5>Distribution</h5>
-                  <ul>
-                      <li>distribution 1</li>
-                      <li>distribution 2</li>
-                      <li>distribution 3</li>
-                  </ul>
-                  
-              </section>
-              <section class="cont1">
-                  <hr class="a-separator visible-xs">
-                  <h5>Resources</h5>
-                  <ul>
-                      <li>Mobile App</li>
-                      <li>RSS Feeds</li>
-                      <li>News Plugin</li>
-                      
-                  </ul>
-                  
-              </section>
-              <section class="cont1">
-                  <hr class="a-separator visible-xs">
-                  <h5>About</h5>
-                  <ul>
-                      <li>News Home</li>
-                      <li>Follow us</li>
-                      <li>Caree</li>
-                    
-                  </ul>
-                  
-              </section>
-              <section class="cont1">
-                  <hr class="a-separator visible-xs">
-                  <h5>Help/ Support</h5>
-                  <ul>
-                      <li>FAQ</li>
-                      <li>Video Tuto</li>
-                      <li>Report</li>
-                  </ul>
-                  
-              </section>
-              <section class="footer-section social">
-                <h3>Suivez-nous</h3>
-                <a href="#"><img src="./media/facebook.jpg" alt="Facebook"></a>
-                <a href="#"><img src="./media/Twitter.jpg" alt="Twitter"></a>
-                <a href="#"><img src="./media/Linkedin.jpg" alt="Instagram"></a>
-              </section>
-             
-          </section>
+    <conception
+        :page="currentPage">
+    </conception>
 
-      </section>
-  </footer>
+    <site-footer :history="historyLog"></site-footer>
   
 </body>
 </html>
