@@ -23,7 +23,6 @@ function html_head(array $menu_a): string
     <header>
         <h1>📰 Javascripteurs</h1>
         <div id="user-info">{$user_html}</div>
-        <div id="mouse-coords">🖱️ x: 0, y: 0</div>
         <button id="toggle-articles">Masquer articles</button>
     </header>
     <nav>

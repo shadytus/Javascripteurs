@@ -21,7 +21,7 @@ function main_favoris(): string
             $html .= <<<HTML
             <article class="article-card">
                 <h3>{$article['title_art']}</h3>
-                <p>{$article['accroche_art']}</p>
+                <p>{$article['hook_art']}</p>
                 <form method="POST" action="index.php?page=favoris">
                     <input type="hidden" name="id" value="{$article['id_art']}">
                     <button name="action" value="remove">❌ Retirer</button>
