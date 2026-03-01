@@ -5,9 +5,11 @@ function html_head(array $menu_a): string
         ? "👤 <strong>{$_SESSION['user']['nom']}</strong> | <a href='index.php?page=logout'>Déconnexion</a>"
         : "👤 <a href='index.php?page=login'>Non identifié</a>";
 
+    $current_page = $_GET['page'] ?? 'home';
     $menu_html = '';
     foreach ($menu_a as $item) {
-        $menu_html .= "<a href='index.php?page={$item['page']}'>{$item['label']}</a>\n";
+        $active     = ($item['page'] === $current_page) ? " class='active'" : '';
+        $menu_html .= "<a href='index.php?page={$item['page']}'{$active}>{$item['label']}</a>\n";
     }
 
     return <<<HTML

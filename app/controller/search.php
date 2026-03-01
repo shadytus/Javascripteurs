@@ -1,48 +1,74 @@
 <?php
-function main_search(): string {
-    $menu_a = get_menu();
-    
-    // 1. On récupère ce que l'utilisateur a tapé (s'il a tapé quelque chose)
-    $mot_cle = $_GET['q'] ?? '';
-    $resultats_html = '';
+function main_search(): string
+{
+    $menu_a  = get_menu();
+    $keyword = trim($_GET['q']      ?? '');
+    $author  = trim($_GET['author'] ?? '');
+    $results_html = '';
 
-    // 2. Si on a un mot-clé, on demande au Modèle de chercher
-    if (!empty($mot_cle)) {
-        $articles = search_articles($mot_cle);
-        
-        if (count($articles) > 0) {
-            foreach ($articles as $art) {
-                // On recycle ta structure d'article
-                $resultats_html .= <<<HTML
+    if ($keyword !== '') {
+        $articles = search_articles($keyword, $author, 20);
+
+        if (empty($articles)) {
+            $kw_safe  = htmlspecialchars($keyword);
+            $results_html = "<p class='search-no-results'>Aucun résultat pour « <strong>{$kw_safe}</strong> ».</p>";
+        } else {
+            $count = count($articles);
+            $kw_safe = htmlspecialchars($keyword);
+            $results_html = "<p class='search-count'>{$count} résultat(s) pour « <strong>{$kw_safe}</strong> »</p>";
+            $results_html .= "<div class='articles-list'>";
+            foreach ($articles as $article) {
+                $title   = htmlspecialchars($article['title_art']  ?? '');
+                $accroche = htmlspecialchars($article['hook_art']  ?? '');
+                $id      = (int)($article['id_art'] ?? 0);
+                $results_html .= <<<HTML
                 <article class="article-card">
-                    <h3>{$art['title_art']}</h3>
-                    <p>{$art['hook_art']}</p>
-                    <a href="index.php?page=article&id={$art['id_art']}">Lire</a>
+                    <h3>{$title}</h3>
+                    <p class="accroche">{$accroche}</p>
+                    <a href="index.php?page=article&id={$id}">Lire la suite →</a>
+                    <form method="POST" action="index.php?page=favoris">
+                        <input type="hidden" name="id" value="{$id}">
+                        <button name="action" value="add">⭐ Ajouter aux favoris</button>
+                    </form>
                 </article>
                 HTML;
             }
-        } else {
-            $resultats_html = "<p>Aucun article trouvé pour '<b>" . htmlspecialchars($mot_cle) . "</b>'.</p>";
+            $results_html .= "</div>";
         }
     }
 
-    // 3. On construit la page (Formulaire + Résultats)
-    $html_page = <<<HTML
-    <h2>Recherche</h2>
-    <form method="GET" action="index.php" class="search-form">
-        <input type="hidden" name="page" value="search">
-        <input type="text" name="q" value="" placeholder="Chercher un article...">
-        <button type="submit">🔍 Chercher</button>
-    </form>
-    <div class="articles-list">
-        {$resultats_html}
-    </div>
-HTML;
+    $kw_val     = htmlspecialchars($keyword);
+    $author_val = htmlspecialchars($author);
 
-    // 4. On assemble le sandwich (Template)
+    $html = <<<HTML
+    <section class="search-page">
+        <h2>🔍 Recherche d'articles</h2>
+
+        <form class="search-form" method="GET" action="index.php">
+            <input type="hidden" name="page" value="search">
+
+            <div class="search-row">
+                <label for="q">Mot-clé :</label>
+                <input type="text" id="q" name="q" value="{$kw_val}" placeholder="Rechercher un titre ou un texte..." required>
+            </div>
+
+            <div class="search-row">
+                <label for="author">Auteur (optionnel) :</label>
+                <input type="text" id="author" name="author" value="{$author_val}" placeholder="Nom de l'auteur...">
+            </div>
+
+            <button type="submit" class="search-submit">Rechercher</button>
+        </form>
+
+        <div class="search-results">
+            {$results_html}
+        </div>
+    </section>
+    HTML;
+
     return join("\n", [
         html_head($menu_a),
-        $html_page,
-        html_foot()
+        $html,
+        html_foot(),
     ]);
 }
