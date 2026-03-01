@@ -10,7 +10,7 @@ function press_get_articles(int $limit = 10): array
 
 function press_get_article_by_id(int $id): array
 {
-    $query  = "SELECT * FROM t_article WHERE id_art = :id";
+    $query  = "SELECT * FROM t_article a, t_category c, t_reporter r WHERE a.fk_category_art = c.id_cat AND a.reporter_art = r.id_rep AND a.id_art = :id";
     $params = [':id' => $id];
     $result = db_select_prepare($query, $params);
     return $result[0] ?? [];

@@ -4,10 +4,11 @@ function search_articles(string $keyword, string $author = '', int $limit = 10):
     $params = [];
 
     if (!empty($author)) {
-        $query = "SELECT * FROM t_article 
+        $query = "SELECT * FROM t_article a, t_reporter r
                   WHERE (title_art LIKE :keyword 
                   OR hook_art LIKE :keyword2)
-                  AND author_art = :author
+                  AND name_rep = :author
+                  AND a.reporter_art = r.id_rep
                   ORDER BY date_art DESC 
                   LIMIT $limit";
         $params = [
@@ -16,9 +17,10 @@ function search_articles(string $keyword, string $author = '', int $limit = 10):
             ':author'   => $author
         ];
     } else {
-        $query = "SELECT * FROM t_article 
+        $query = "SELECT * FROM t_article a, t_reporter r 
                   WHERE title_art LIKE :keyword 
                   OR hook_art LIKE :keyword2
+                  AND a.reporter_art = r.id_rep
                   ORDER BY date_art DESC 
                   LIMIT $limit";
         $params = [

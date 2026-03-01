@@ -21,7 +21,7 @@ function html_head(array $menu_a): string
         <title>Javascripteurs - Site de presse</title>
         <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="lib/fontawesome/all.min.css">
-        <link rel="stylesheet" href="./public/css/main.css"> 
+        <link rel="stylesheet" href="./css/main.css"> 
     </head>
     <body>
         
@@ -40,9 +40,6 @@ function html_head(array $menu_a): string
                 </nav>
             </div>
             
-            <div class="nav-actions">
-                <button id="toggle-articles">Masquer articles</button>
-            </div>
         </div>
     </header>
 
@@ -59,10 +56,9 @@ function html_foot(): string
         $data   = json_decode($result, true);
         $text   = htmlspecialchars($data['text']  ?? '');
         $image  = htmlspecialchars($data['image'] ?? '');
-        $color  = htmlspecialchars($data['color'] ?? '#f0f0f0');
         $banner = <<<HTML
-        <aside class="banner" style="background-color:{$color};">
-            <img src="{$image}" alt="Sponsor">
+        <aside class="banner">
+            <img src="{$image}" alt="Sponsor (me)">
             <p>{$text}</p>
         </aside>
         HTML;

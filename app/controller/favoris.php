@@ -9,11 +9,20 @@ function main_favoris(): string
     if ($action === 'remove' && $id > 0) favorites_remove($id);
     if ($action === 'clear')             favorites_clear();
 
+    if (!empty($action)) {
+        // On récupère l'URL de la page précédente, sinon on renvoie vers l'accueil par défaut
+        $referer = $_SERVER['HTTP_REFERER'] ?? 'index.php';
+        header("Location: " . $referer);
+        exit; // On arrête tout, on n'affiche pas le HTML ci-dessous
+    }
+
     $ids  = favorites_get();
     $html = '<p>Total : ' . count($ids) . ' favori(s)</p>';
     $html .= '<form method="POST" action="index.php?page=favoris">
                 <button name="action" value="clear">🗑️ Vider</button>
               </form>';
+    
+    $html .= '<div class="articles-list">';
 
     foreach ($ids as $id) {
         $article = press_get_article_by_id($id);
@@ -30,6 +39,7 @@ function main_favoris(): string
             HTML;
         }
     }
+    $html .= '</div>'; // Fin de la grille
 
     return join("\n", [html_head($menu_a), "<h2>Mes favoris</h2>$html", html_foot()]);
 }

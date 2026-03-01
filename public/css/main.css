@@ -24,77 +24,63 @@ body {
 }
 
 /* ============================================================
-   HEADER (article.html / custom.html)
+   HEADER & NAVIGATION (template.php)
    ============================================================ */
 .jn-header {
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: var(--color-primary); /* Fond rouge pour faire ressortir l'en-tête */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .header-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 20px;
-    border-bottom: 1px solid #eee;
-    font-size: 0.8rem;
+    padding: 15px 30px;
+    flex-wrap: wrap; /* Permet de passer à la ligne sur petit écran */
+    gap: 15px;
 }
 
-.header-left nav,
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Espace entre le H1 et le menu */
+    flex-wrap: wrap;
+}
+
+.header-left h1 { 
+    margin: 0; 
+    font-size: 1.8rem; 
+    color: white; 
+}
+
+.header-left nav, 
 .header-right nav {
     display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
 }
 
-.header-left nav a,
+.header-left nav a, 
 .header-right nav a {
-    color: #333;
+    color: white;
     text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.header-left nav a:hover,
-.header-right nav a:hover { color: var(--color-primary); }
-
-/* Barre principale : logo + nav centrale + boutons */
-.logo-submit-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    gap: 20px;
-    flex-wrap: wrap;
+.header-left nav a:hover, 
+.header-left nav a.active { 
+    background-color: rgba(255, 255, 255, 0.2); 
+    transform: translateY(-2px);
 }
 
-/* Logo — CORRIGE : plus de position:absolute qui débordait */
-.logo { flex-shrink: 0; }
-.logo img {
-    width: 65px;
-    height: 65px;
-    object-fit: contain;
-    display: block;
+.header-right strong {
+    color: var(--color-accent);
 }
-
-.header-logo { padding: 6px 20px 0; }
-.header-logo img {
-    width: 70px;
-    height: 60px;
-    object-fit: contain;
-    display: block;
-}
-
-/* Nav centrale — CORRIGE : plus de left:-235px */
-.header-left-2 nav {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-}
-.header-left-2 nav a {
-    text-decoration: none;
-    color: #222;
-    font-size: 0.9rem;
-}
-.header-left-2 nav a:hover { color: var(--color-primary); }
 
 /* Boutons actions — CORRIGE : plus de left:190px */
 .nav-actions {
@@ -119,46 +105,6 @@ body {
 .nav-actions button:hover { background: #e0a800; }
 
 .audio-btn, .read-btn { background: none; border: none; padding: 0; }
-
-/* ============================================================
-   NAVIGATION PHP (template.php)
-   ============================================================ */
-nav {
-    background-color: var(--color-primary);
-    padding: 0 20px;
-    display: flex;
-    gap: 0;
-    flex-wrap: wrap;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 16px;
-    display: inline-block;
-    font-size: 0.9rem;
-    transition: background 0.2s;
-}
-
-nav a:hover,
-nav a.active {
-    background-color: rgba(255,255,255,0.18);
-}
-
-/* ============================================================
-   HEADER PHP (template.php)
-   ============================================================ */
-header {
-    background-color: var(--color-primary);
-    color: white;
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-header h1 { margin: 0; font-size: 1.5rem; flex: 1; }
 
 #user-info { font-size: 0.9rem; }
 #user-info a { color: #ffe; text-decoration: underline; }
@@ -221,41 +167,116 @@ header h1 { margin: 0; font-size: 1.5rem; flex: 1; }
 }
 
 /* ============================================================
-   CONTENU PRINCIPAL (pages PHP)
+   CONTENU PRINCIPAL & GRILLE D'ARTICLES (pages PHP)
    ============================================================ */
 main {
-    max-width: 1000px;
+    max-width: 1200px; /* Un peu plus large pour que la grille respire */
     margin: 30px auto;
     padding: 0 20px;
 }
 
 .articles-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* S'adapte tout seul à la taille de l'écran */
+    gap: 25px;
     margin-top: 20px;
 }
 
 .article-card {
     background: white;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 16px 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 0; /* On retire le padding global pour que l'image touche les bords */
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
 }
 
-.article-card h3 { margin: 0 0 8px; font-size: 1.1rem; color: var(--color-primary); }
-.article-card .accroche { color: #555; margin-bottom: 10px; font-size: 0.95rem; }
-.article-card a { color: var(--color-primary); text-decoration: none; font-weight: bold; font-size: 0.9rem; }
-.article-card a:hover { text-decoration: underline; }
-.article-card button {
-    margin-top: 8px;
-    padding: 5px 12px;
-    background: var(--color-accent);
-    border: none;
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.article-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.article-card .text {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Pousse le bas de la carte vers le bas */
+}
+
+.article-card .tag {
+    display: inline-block;
+    align-self: flex-start;
+    background: var(--color-primary);
+    color: white;
+    padding: 4px 10px;
     border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.article-card h3 { 
+    margin: 0 0 10px 0; 
+    font-size: 1.25rem; 
+    line-height: 1.3;
+}
+
+.article-card h3 a { 
+    color: var(--color-text); 
+    text-decoration: none; 
+    transition: color 0.2s ease;
+}
+
+.article-card h3 a:hover { 
+    color: var(--color-primary); 
+}
+
+.article-card .accroche { 
+    color: #555; 
+    margin-bottom: 15px; 
+    font-size: 0.95rem; 
+    line-height: 1.5;
+    flex-grow: 1; /* Pousse le lien et le bouton tout en bas */
+}
+
+.article-card > .text > a { 
+    color: var(--color-primary); 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.article-card > .text > a:hover { 
+    text-decoration: underline; 
+}
+
+/* Le conteneur du bouton favori */
+.article-card form { 
+    margin: auto 0 0 0; /* Maintient le bouton collé en bas */
+    width: 100%;
+}
+
+.article-card form button {
+    width: 100%; /* Le bouton prend toute la largeur de la carte */
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: filter 0.2s ease;
+}
+
+.article-card form button:hover {
+    filter: brightness(0.9); /* Assombrit légèrement le bouton au survol */
 }
 
 /* ============================================================
