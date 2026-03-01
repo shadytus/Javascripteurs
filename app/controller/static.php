@@ -1,9 +1,7 @@
 
 <?php
 function main_static(): string {
-    $menu_a = get_menu(); // Récupère le menu pour le header
-function main_static(): string
-{
+
     $menu_a  = get_menu();
     $content = get_static_content('apropos');
 
@@ -29,8 +27,6 @@ function main_static(): string
         <p>Vous pouvez retrouver le code source sur <a href="https://github.com/shadytus/Javascripteurs" target="_blank">GitHub</a>.</p>
     </section>
     <section class="apropos">
-        <h2>{$titre}</h2>
-        <p class="apropos-description">{$description}</p>
 
         <h3>Fonctionnalités implantées</h3>
         <ul class="feature-list">
@@ -61,5 +57,4 @@ function main_static(): string
         html_foot(),
     ]);
 }
-
 
