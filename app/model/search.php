@@ -6,7 +6,7 @@ function search_articles(string $keyword, string $author = '', int $limit = 10):
     if (!empty($author)) {
         $query = "SELECT * FROM t_article 
                   WHERE (title_art LIKE :keyword 
-                  OR accroche_art LIKE :keyword2)
+                  OR hook_art LIKE :keyword2)
                   AND author_art = :author
                   ORDER BY date_art DESC 
                   LIMIT $limit";
@@ -18,7 +18,7 @@ function search_articles(string $keyword, string $author = '', int $limit = 10):
     } else {
         $query = "SELECT * FROM t_article 
                   WHERE title_art LIKE :keyword 
-                  OR accroche_art LIKE :keyword2
+                  OR hook_art LIKE :keyword2
                   ORDER BY date_art DESC 
                   LIMIT $limit";
         $params = [

@@ -2,7 +2,7 @@
 function html_head(array $menu_a): string
 {
     $user_html = isset($_SESSION['user'])
-        ? "👤 Bonjour <strong>{$_SESSION['user']['nom']}</strong> | <a href='index.php?page=logout'>Déconnexion</a>"
+        ? "👤 <strong>{$_SESSION['user']['nom']}</strong> | <a href='index.php?page=logout'>Déconnexion</a>"
         : "👤 <a href='index.php?page=login'>Non identifié</a>";
 
     $menu_html = '';
@@ -17,17 +17,33 @@ function html_head(array $menu_a): string
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Javascripteurs - Site de presse</title>
-        <link rel="stylesheet" href="./css/main.css">
+        <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="lib/fontawesome/all.min.css">
+        <link rel="stylesheet" href="./public/css/main.css"> 
     </head>
     <body>
-    <header>
-        <h1>📰 Javascripteurs</h1>
-        <div id="user-info">{$user_html}</div>
-        <button id="toggle-articles">Masquer articles</button>
+        
+    <header class="jn-header">
+        <div class="header-top">
+            <div class="header-left">
+                <h1>📰 Javascripteurs</h1>
+                <nav>
+                    {$menu_html}
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <nav>
+                    {$user_html}
+                </nav>
+            </div>
+            
+            <div class="nav-actions">
+                <button id="toggle-articles">Masquer articles</button>
+            </div>
+        </div>
     </header>
-    <nav>
-        {$menu_html}
-    </nav>
+
     <main>
     HTML;
 }
@@ -56,7 +72,6 @@ function html_foot(): string
     <footer>
         <p>© 2025 Javascripteurs</p>
     </footer>
-    <script src="./js/main.js"></script>
     </body>
     </html>
     HTML;

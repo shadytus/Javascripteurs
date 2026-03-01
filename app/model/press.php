@@ -1,7 +1,8 @@
 <?php
 function press_get_articles(int $limit = 10): array
 {
-    $query = "SELECT * FROM t_article 
+    $query = "SELECT a.*, c.name_cat FROM t_article a, t_category c
+              WHERE a.fk_category_art = c.id_cat
               ORDER BY date_art DESC 
               LIMIT $limit";
     return db_select($query);

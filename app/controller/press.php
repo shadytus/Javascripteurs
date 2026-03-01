@@ -6,6 +6,7 @@ function main_press(): string
 
     $html = '';
     foreach ($articles_a as $article) {
+
         $html .= <<<HTML
         <article class="article-card">
             <h3>{$article['title_art']}</h3>
