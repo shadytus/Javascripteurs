@@ -18,9 +18,7 @@ function main_favoris(): string
 
     $ids  = favorites_get();
     $html = '<p>Total : ' . count($ids) . ' favori(s)</p>';
-    $html .= '<form method="POST" action="index.php?page=favoris">
-                <button name="action" value="clear">🗑️ Vider</button>
-              </form>';
+    $html .= '<div>\n                <button type="button" @click="toggleFavori(articleId)">🗑️ Vider</button>\n              </div>';
     
     $html .= '<div class="articles-list">';
 
@@ -31,10 +29,10 @@ function main_favoris(): string
             <article class="article-card">
                 <h3>{$article['title_art']}</h3>
                 <p>{$article['hook_art']}</p>
-                <form method="POST" action="index.php?page=favoris">
+                <div>
                     <input type="hidden" name="id" value="{$article['id_art']}">
-                    <button name="action" value="remove">❌ Retirer</button>
-                </form>
+                    <button name="action" value="remove" method="POST" action="index.php?page=favoris">❌ Retirer</button>
+                </div>
             </article>
             HTML;
         }
