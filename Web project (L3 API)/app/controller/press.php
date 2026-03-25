@@ -19,17 +19,17 @@ function main_press(): string
         // 3. On détermine le bouton en fonction du statut de favori
         if (isset($mes_favoris[$id_article])) {
             $bouton_html = <<<HTML
-            <form method="POST" action="index.php?page=favoris">
+            <div class="favorite-action">
                 <input type="hidden" name="id" value="{$id_article}">
                 <button name="action" value="remove">❌ Retirer</button>
-            </form>
+            </div>
             HTML;
         } else {
             $bouton_html = <<<HTML
-            <form method="POST" action="index.php?page=favoris">
+            <div class="favorite-action">
                 <input type="hidden" name="id" value="{$id_article}">
                 <button name="action" value="add">⭐ Ajouter aux favoris</button>
-            </form>
+            </div>
             HTML;
         }
 

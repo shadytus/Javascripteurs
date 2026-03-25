@@ -26,10 +26,10 @@ function main_search(): string
                     <h3>{$title}</h3>
                     <p class="accroche">{$accroche}</p>
                     <a href="index.php?page=article&id={$id}">Lire la suite →</a>
-                    <form method="POST" action="index.php?page=favoris">
+                    <div class="favorite-action">
                         <input type="hidden" name="id" value="{$id}">
                         <button name="action" value="add">⭐ Ajouter aux favoris</button>
-                    </form>
+                    </div>
                 </article>
                 HTML;
             }
@@ -44,7 +44,7 @@ function main_search(): string
     <section class="search-page">
         <h2>🔍 Recherche d'articles</h2>
 
-        <form class="search-form" method="GET" action="index.php">
+        <div class="search-form">
             <input type="hidden" name="page" value="search">
 
             <div class="search-row">
@@ -58,7 +58,7 @@ function main_search(): string
             </div>
 
             <button type="submit" class="search-submit">Rechercher</button>
-        </form>
+        </div>
 
         <div class="search-results">
             {$results_html}

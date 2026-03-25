@@ -83,7 +83,7 @@ function main_login(): string
     $html = <<<HTML
     <div class="search-page">
         {$message}
-        <form class="search-form" method="POST" action="index.php?page=login">
+        <div class="search-form">
             <div class="search-row">
                 <label>Login :</label>
                 <input type="text" name="login" placeholder="Entrez votre identifiant" required>
@@ -95,7 +95,7 @@ function main_login(): string
             </div>
             
             <button type="submit" class="search-submit" style="margin-top: 10px;">Se connecter</button>
-        </form>
+        </div>
     </div>
     HTML;
 
