@@ -11,6 +11,7 @@ function include_mvc_php_files(): void
         $file_a = scandir(ROOT_DIR . $dir);
         foreach ($file_a as $file) {
             if (substr($file, -4, 4) != ".php") continue;
+            if (str_contains($file, '_fetch.php')) continue;
             require_once(ROOT_DIR.$dir.DIRECTORY_SEPARATOR.$file);
         }
     }

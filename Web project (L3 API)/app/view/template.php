@@ -11,6 +11,8 @@ function html_head(array $menu_a): string
         $active     = ($item['page'] === $current_page) ? " class='active'" : '';
         $menu_html .= "<a href='index.php?page={$item['page']}'{$active}>{$item['label']}</a>\n";
     }
+    
+    $is_admin = (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') ? 'true' : 'false';
 
     return <<<HTML
     <!DOCTYPE html>
@@ -22,6 +24,9 @@ function html_head(array $menu_a): string
         <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="lib/fontawesome/all.min.css">
         <link rel="stylesheet" href="./css/main.css"> 
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script type="module" src="./public/main.js"></script>
+        <script>window.USER_ROLE_IS_ADMIN = {$is_admin};</script>
     </head>
     <body>
         

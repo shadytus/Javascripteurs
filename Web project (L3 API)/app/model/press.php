@@ -40,3 +40,13 @@ function press_get_articles_by_category(int $id_cat): array
     $params = [':id_cat' => $id_cat];
     return db_select_prepare($query, $params);
 }
+function press_get_details_article_by_id(int $id): array
+{
+    $query  = "SELECT a.ident_art, a.date_art, a.readtime_art, c.name_cat 
+               FROM t_article a, t_category c
+               WHERE a.id_art = :id AND a.fk_category_art = c.id_cat";
+    $params = [':id' => $id];
+    $result = db_select_prepare($query, $params);
+    return $result[0] ?? [];
+}
+

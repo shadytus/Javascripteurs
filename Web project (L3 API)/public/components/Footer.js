@@ -85,6 +85,17 @@ export default {
             
             </section>
 
+                <div class="sponsor-banner" :style="{ backgroundColor: ads.background_color, border: '2px solid' + ads.border_color }">
+                    <div class="ads-content" style="display: flex; align-items: center; padding: 10px;">
+                        <img :src="ads.image_url" alt="Logo Sponsor" style="max-width: 100px; margin-right: 20px;">
+                        <div>
+                            <p><strong>{{ ads.text_content }}</strong></p>
+                            <small>Burotix conseille les PME et les indépendants [cite: 194]</small>
+                        </div>
+                        <img :src="ads.secondary_image" alt="Promo" style="max-width: 50px; margin-left: auto;">
+                    </div>
+                </div>
+
             </section>
         </footer>
     `,
