@@ -16,6 +16,14 @@ function include_mvc_php_files(): void
         }
     }
 }
+if (isset($_GET['page']) && $_GET['page'] === 'logout') {
+    // 1. On vide la session
+    unset($_SESSION['user']);
+    
+    // 2. On redirige proprement vers la page login
+    header('Location: index.php?page=home');
+    exit;
+}
 
 session_start();
 include_mvc_php_files();
@@ -24,10 +32,21 @@ if (isset($_POST['theme']))  $_SESSION['theme']  = $_POST['theme'];
 if (isset($_POST['police'])) $_SESSION['police'] = $_POST['police'];
 
 $page = @$_REQUEST['page'] ?: 'home';
-$main = "main_{$page}";
+//$main = "main_{$page}";
 
-if (function_exists($main)) {
-    echo $main();
+$vue_pages = ['press', 'article', 'search', 'favoris', 'login'];
+
+if (in_array($page, $vue_pages)) {
+    echo main_press();
 } else {
-    echo main_home();
+    $main = "main_{$page}";
+    echo function_exists($main) ? $main() : main_home();
 }
+
+
+
+// if (function_exists($main)) {
+//     echo $main();
+// } else {
+//     echo main_home();
+// }

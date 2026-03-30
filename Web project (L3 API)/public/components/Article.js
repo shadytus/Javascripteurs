@@ -10,15 +10,23 @@ export default {
         // Dès que l'ID change (clic sur un autre article), on recharge
         articleId(newId) { if(newId) this.fetchArticle(newId); }
     },
+    mounted() {
+        if (this.articleId) this.fetchArticle(this.articleId); // Si on a déjà un ID au départ
+    },
     methods: {
         fetchArticle(id) {
-            fetch(`app/controller/article_fetch.php?id=${id}`)
+            fetch(`../app/controller/article_fetch.php?id=${id}`)
                 .then(r => r.json())
-                .then(data => this.article = data);
+                .then(data => {;
+                if (data !== "inconnu") {
+                        this.article = data;
+                    }
+                })
+                .catch(err => console.error("Erreur chargement article:", err));
         }
     },
     template: `
-    <div v-show="page == 'article' && article">
+    <div v-if="page == 'article' && article">
         <article class="article-detail" style="max-width: 800px; margin: 0 auto; padding: 20px;">
             <span class="tag" style="background: yellow; color: black; padding: 5px;">
                 {{ article.name_cat }}
@@ -38,5 +46,9 @@ export default {
             </button>
         </article>
     </div>
-    `
+
+    <div v-else-if="page == 'article' && !article" style="text-align:center; padding:50px;">
+        <p>Chargement de l'article en cours...</p>
+    </div>
+    `    
 }

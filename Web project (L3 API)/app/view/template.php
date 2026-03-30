@@ -21,11 +21,11 @@ function html_head(array $menu_a): string
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Javascripteurs - Site de presse</title>
-        <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="lib/fontawesome/all.min.css">
+        <!-- <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="lib/fontawesome/all.min.css"> -->
         <link rel="stylesheet" href="./css/main.css"> 
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-        <script type="module" src="./public/main.js"></script>
+        <script type="module" src="App.js"></script>
         <script>window.USER_ROLE_IS_ADMIN = {$is_admin};</script>
     </head>
     <body>
@@ -52,21 +52,42 @@ function html_head(array $menu_a): string
     HTML;
 }
 
+
 function html_foot(): string
 {
     $banner = '';
     $url    = 'http://playground.burotix.be/adv/banner_for_isfce.json';
-    $result = @file_get_contents($url);
+    $result = @file_get_contents($url); // On remet le @ pour la propreté
+    
     if ($result) {
-        $data   = json_decode($result, true);
-        $text   = htmlspecialchars($data['text']  ?? '');
-        $image  = htmlspecialchars($data['image'] ?? '');
-        $banner = <<<HTML
-        <aside class="banner">
-            <img src="{$image}" alt="Sponsor (me)">
-            <p>{$text}</p>
-        </aside>
-        HTML;
+        $data = json_decode($result, true);
+        
+        // 1. On ouvre le fameux "tiroir" caché par le prof
+        if (isset($data['banner_4IPDW'])) {
+            $adv = $data['banner_4IPDW'];
+            
+            // 2. On extrait les vraies variables
+            $text    = htmlspecialchars($adv['text'] ?? '');
+            $image   = htmlspecialchars($adv['image'] ?? '');
+            $couleur = htmlspecialchars($adv['color'] ?? '#f8f9fa');
+            $bg_img  = htmlspecialchars($adv['background_image'] ?? '');
+            $link    = htmlspecialchars($adv['link'] ?? '#');
+            
+            // 3. On génère le HTML en utilisant TOUTES les données demandées
+            $banner = <<<HTML
+            <aside class="banner-sponsor" style="
+                background-color: {$couleur}; 
+                background-image: url('{$bg_img}');
+            ">
+                <a href="{$link}" target="_blank" class="banner-link">
+                    <img src="{$image}" alt="Burotix Sponsor" class="sponsor-img-main">
+                    <div class="banner-content">
+                        <p>{$text}</p>
+                    </div>
+                </a>
+            </aside>
+            HTML;
+        }
     }
 
     return <<<HTML

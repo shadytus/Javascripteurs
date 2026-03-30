@@ -1,8 +1,12 @@
 <?php
 
+require_once "../config/app.php";
+require_once "../config/model.php";
+require_once "../model/database.php";
+require_once "../model/press.php";
+
 header('Content-Type: application/json');
 if (!isset($_GET['id'])) {
-    header('Content-Type: application/json');
     echo json_encode("inconnu"); 
     exit; // On stoppe l'exécution AVANT d'appeler la fonction SQL
 }
@@ -27,6 +31,8 @@ if ($mode === 'light') {
 }
 else {
     // On peut aussi ajouter un champ de résumé pour le mode "full"
+    $article['wordCount'] = $wordCount;
+    $article['readtime'] = $article['readtime_art'];    
     echo json_encode($article);
     exit;
 }

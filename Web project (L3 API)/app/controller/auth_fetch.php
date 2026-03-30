@@ -1,15 +1,32 @@
 <?php
+
+session_start();
+
 header('Content-Type: application/json');
 
 $action = $_GET['action'] ?? '';
 
 // --- LOGIQUE DE DÉCONNEXION ---
 if ($action === 'logout') {
-    $path = '/tmp/session_' . session_id() . '.json';
-    if (file_exists($path)) unlink($path);
+    // 1ère CORRECTION ICI : On utilise sys_get_temp_dir() pour supprimer le fichier
+    $path = sys_get_temp_dir() . '/session_' . session_id() . '.json';
+    if (file_exists($path)) @unlink($path);
+    
     
     unset($_SESSION['user']);
     echo json_encode(['success' => true, 'message' => 'Déconnecté']);
+    exit;
+}
+
+if ($action === 'check') {
+    if (isset($_SESSION['user'])) {
+        echo json_encode([
+            'success' => true, 
+            'user_name' => $_SESSION['user']['nom']
+        ]);
+    } else {
+        echo json_encode(['success' => false]);
+    }
     exit;
 }
 
@@ -25,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $json = ['success' => true, 'name' => 'Administrateur Test', 'role' => 'admin'];
     } else {
         $url = 'http://playground.burotix.be/login';
-        // Appel API externe via POST [cite: 175, 176]
+        // Appel API externe via POST
         $ctx = stream_context_create([
             'http' => [
                 'method' => 'POST',
@@ -44,8 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'role'  => $json['role'] ?? 'user',
         ];
         
-        // Sauvegarde temporaire demandée dans ton projet 2
-        file_put_contents('/tmp/session_' . session_id() . '.json', json_encode($_SESSION['user']));
+        // 2ème CORRECTION ICI : On utilise sys_get_temp_dir() pour écrire le fichier
+        $path = sys_get_temp_dir() . '/session_' . session_id() . '.json';
+        @file_put_contents($path, json_encode($_SESSION['user']));
 
         echo json_encode([
             'success' => true, 

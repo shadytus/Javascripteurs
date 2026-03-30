@@ -1,68 +1,79 @@
 export default {
     name: 'Favorite',
-    
-    props: {
-        page: {
-            type: String,
-            required: true
-        }
-    },
-
+    props: ['page'],
     data() {
         return {
-            nb_words: 0,
-            favorites: []
+            nb_favorites: 0,
+            favoriteArticles: [] // On stockera les articles ici
         }
     },
-
     methods: {
+        // Nouvelle méthode pour charger les données dès qu'on ouvre la page
+        loadFavorites() {
+            fetch(`../app/controller/favorite_fetch.php?action=list`)
+                .then(r => r.json())
+                .then(data => {
+                    this.nb_favorites = data.count;
+                    this.favoriteArticles = data.articles;
+                })
+                .catch(err => console.error("Erreur de chargement:", err));
+        },
+
         toggleFavori(action, id = null) {
-            let url = `Web project (L3 API)/app/controller/fetch_favoris.php?action=${action}`;
+            let url = `../app/controller/favorite_fetch.php?action=${action}`;
             if (id) url += '&id=' + id;
 
             fetch(url)
-                .then(response => response.json())
+                .then(r => r.json())
                 .then(data => {
-                    console.log(data);
-                    this.favorites = data.favorites;
-                    this.nb_words = data.nb_words;
+                    this.nb_favorites = data.count;
+                    this.favoriteArticles = data.articles;
+                    
+                    // On prévient App.js que le compteur global a changé
+                    this.$emit('update-fav-count', data.count);
                 })
-                .catch(error => console.error('Erreur:', error));
-        },
-        showDetail(id) {
-            let url = `Web project (L3 API)/app/controller/detail_fetch.php?id=${id}`;
-
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    document.getElementById('detail-title').innerHTML = `
-                    <p>Nombre de mots : ${data.nb_mots}</p>
-                `;
-                })
-                .catch(error => console.error('Erreur:', error));
+                .catch(err => console.error("Erreur d'action:", err));
         }
     },
-
+    
+    // Au moment où le composant apparaît, on lance la requête
+    mounted() {
+        this.loadFavorites();
+    },
 
     template: `
-        <div v-show="page == 'favorite'">
-            <h2>Mes Favoris ({{ nb_words }})</h2>
+        <div v-show="page == 'favoris'" class="favorites-page">
+            <h2>Mes Favoris ({{ nb_favorites }})</h2>
             
-            <div class="favoris-summary" v-if="favorites.length > 0">
-                <p>Derniers ajouts :</p>
-                <ul>
-                    <li v-for="title in favorisTitles">{{ title }}</li>
-                </ul>
+            <div class="favoris-actions" v-if="nb_favorites > 0">
                 <button type="button" @click="toggleFavori('clear')">🗑️ Tout effacer</button>
             </div>
 
-            <main class="article-card">
-                <h3>Titre de l'article</h3> 
-                <p>Accroche de l'article...</p>
-                <button type="button" @click="toggleFavori('remove', 123)">🗑️ Retirer</button>
-            </main>
+            <div v-if="nb_favorites === 0">
+                <p>Vous n'avez aucun article dans vos favoris pour le moment.</p>
+            </div>
+
+            <div class="articles-list" v-else>
+                <article v-for="art in favoriteArticles" :key="art.id_art" class="article-card">
+                    
+                    <img :src="'./media/' + art.image_art" alt="Miniature" v-if="art.image_art">
+                    
+                    <div class="text">
+                        <h3>{{ art.title_art }}</h3>
+                        <p class="accroche">{{ art.hook_art }}</p>
+                        
+                        <div class="favorite-action">
+                            <button @click="$emit('change-page', {name: 'article', id: art.id_art})">
+                                Lire
+                            </button>
+                            <button @click="toggleFavori('remove', art.id_art)">
+                                ❌ Retirer
+                            </button>
+                        </div>
+                    </div>
+
+                </article>
+            </div>
         </div>
     `
 }
-

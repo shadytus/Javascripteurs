@@ -9,10 +9,24 @@ export default {
             authMessage: ''
         }
     },
+    mounted() {
+        this.checkAuthStatus();
+    },
     methods: {
+        
+        checkAuthStatus() {
+            fetch('../app/controller/auth_fetch.php?action=check')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        this.currentUser = data.user_name; // Restaure l'affichage !
+                    }
+                })
+                .catch(error => console.error("Erreur de vérification :", error));
+        },
         submitLogin() {
             // Appel à l'API pour tenter de se connecter
-            fetch('/app/controller/auth_fetch.php?action=login', {
+            fetch('../app/controller/auth_fetch.php?action=login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -25,8 +39,11 @@ export default {
             .then(response => response.json())  
             .then(data => {
                 if (data.success) {
-                    this.currentUser = data.username; // Stocke le nom de l'utilisateur connecté
+                    this.currentUser = data.user_name; // Stocke le nom de l'utilisateur connecté
                     this.authMessage = '';
+
+                    window.location.reload();
+
                 } else {
                     this.authMessage = data.message || 'Échec de la connexion.';
                 }
@@ -38,7 +55,7 @@ export default {
         },
         logout() {
             // Appel à l'API pour se déconnecter
-            fetch('/app/controller/auth_fetch.php?action=logout', {
+            fetch('../app/controller/auth_fetch.php?action=logout', {
                 method: 'POST'
             })  
             .then(response => response.json())
@@ -46,8 +63,7 @@ export default {
                 if (data.success) {
                     this.currentUser = null; // Réinitialise l'utilisateur connecté
                     this.authMessage = '';
-                } else {
-                    this.authMessage = data.message || 'Échec de la déconnexion.';
+                    window.location.reload();
                 }
             })
             .catch(error => {
