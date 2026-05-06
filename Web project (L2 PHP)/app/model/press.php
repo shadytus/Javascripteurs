@@ -4,8 +4,9 @@ function press_get_articles(int $limit = 24): array
     $query = "SELECT a.*, c.name_cat FROM t_article a, t_category c
               WHERE a.fk_category_art = c.id_cat
               ORDER BY date_art DESC 
-              LIMIT $limit";
-    return db_select($query);
+              LIMIT :limit";
+    $params = [':limit' => $limit];
+    return db_select_prepare($query, $params);
 }
 
 function press_get_article_by_id(int $id): array
@@ -21,8 +22,8 @@ function press_get_articles_by_date(string $date, int $limit = 10): array
     $query  = "SELECT * FROM t_article 
                WHERE DATE(date_art) = :date
                ORDER BY date_art DESC 
-               LIMIT $limit";
-    $params = [':date' => $date];
+               LIMIT :limit";
+    $params = [':date' => $date, ':limit' => $limit];
     return db_select_prepare($query, $params);
 }
 

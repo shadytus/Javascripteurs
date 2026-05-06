@@ -1,20 +1,20 @@
 <?php
-function favorites_get(): array
+function favorites_get(array $session_favoris): array
 {
-    return $_SESSION['favoris'] ?? [];
+    return $session_favoris;
 }
 
-function favorites_add(int $id): void
+function favorites_add(array &$session_favoris, int $id): void
 {
-    $_SESSION['favoris'][$id] = $id;
+    $session_favoris[$id] = $id;
 }
 
-function favorites_remove(int $id): void
+function favorites_remove(array &$session_favoris, int $id): void
 {
-    unset($_SESSION['favoris'][$id]);
+    unset($session_favoris[$id]);
 }
 
-function favorites_clear(): void
+function favorites_clear(array &$session_favoris): void
 {
-    $_SESSION['favoris'] = [];
+    $session_favoris = [];
 }

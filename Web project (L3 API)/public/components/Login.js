@@ -15,35 +15,31 @@ export default {
     methods: {
         
         checkAuthStatus() {
-            fetch('../app/controller/auth_fetch.php?action=check')
-                .then(response => response.json())
+            fetch('index.php?page=auth_fetch&action=check', { credentials: 'include' })
+                .then(r => { if (!r.ok) throw new Error('Erreur réseau'); return r.json(); })
                 .then(data => {
                     if (data.success) {
-                        this.currentUser = data.user_name; // Restaure l'affichage !
+                        this.currentUser = data.user_name;
                     }
                 })
                 .catch(error => console.error("Erreur de vérification :", error));
         },
         submitLogin() {
-            // Appel à l'API pour tenter de se connecter
-            fetch('../app/controller/auth_fetch.php?action=login', {
+            fetch('index.php?page=auth_fetch&action=login', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify({
                     login: this.loginInput,
                     password: this.passInput
                 })
             })
-            .then(response => response.json())  
+            .then(r => { if (!r.ok) throw new Error('Erreur réseau'); return r.json(); })
             .then(data => {
                 if (data.success) {
-                    this.currentUser = data.user_name; // Stocke le nom de l'utilisateur connecté
+                    this.currentUser = data.user_name;
                     this.authMessage = '';
-
                     window.location.reload();
-
                 } else {
                     this.authMessage = data.message || 'Échec de la connexion.';
                 }
@@ -54,14 +50,14 @@ export default {
             });
         },
         logout() {
-            // Appel à l'API pour se déconnecter
-            fetch('../app/controller/auth_fetch.php?action=logout', {
-                method: 'POST'
+            fetch('index.php?page=auth_fetch&action=logout', {
+                method: 'POST',
+                credentials: 'include'
             })  
-            .then(response => response.json())
+            .then(r => { if (!r.ok) throw new Error('Erreur réseau'); return r.json(); })
             .then(data => {
                 if (data.success) {
-                    this.currentUser = null; // Réinitialise l'utilisateur connecté
+                    this.currentUser = null;
                     this.authMessage = '';
                     window.location.reload();
                 }

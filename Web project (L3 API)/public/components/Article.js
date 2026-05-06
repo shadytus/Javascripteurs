@@ -15,10 +15,10 @@ export default {
     },
     methods: {
         fetchArticle(id) {
-            fetch(`../app/controller/article_fetch.php?id=${id}`)
-                .then(r => r.json())
-                .then(data => {;
-                if (data !== "inconnu") {
+            fetch(`index.php?page=article_fetch&id=${id}`, { credentials: 'include' })
+                .then(r => { if (!r.ok) throw new Error('Erreur réseau'); return r.json(); })
+                .then(data => {
+                    if (data !== "inconnu") {
                         this.article = data;
                     }
                 })

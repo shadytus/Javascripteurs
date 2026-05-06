@@ -1,24 +1,9 @@
-<?php
-function main_logout() {
-    // Si la session n'est pas encore lancée sur cette page, on la lance
-    if(session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-    
-    // On détruit tout !
-    session_destroy();
-    unset($_SESSION['user']);
-    
-    // On redirige proprement vers la page login
-    header('Location: index.php?page=login');
-    exit;
-}
 function main_press(): string 
 {
-    // On récupère le menu depuis le modèle
     $menu_a = get_menu(); 
+    $user = $_SESSION['user'] ?? null;
+    $current_page = $_GET['page'] ?? 'press';
     
-    // On prépare le contenu HTML "coquille"
     $content = <<<HTML
     <div id="app">
         <div v-if="activeDetails" class="detail-tooltip">
@@ -29,7 +14,6 @@ function main_press(): string
             v-if="currentPage === 'press'" 
             :page="currentPage" 
             @change-page="goToPage">
-
         </article-list>
 
         <article-detail 
@@ -50,10 +34,8 @@ function main_press(): string
             :page="currentPage"
             @change-page="goToPage">    
         </favorites-view>
-        
-        
     </div>
-    HTML;
+HTML;
 
-    return html_head($menu_a) . $content . html_foot();
+    return html_head($menu_a, $user, $current_page) . $content . html_foot();
 }

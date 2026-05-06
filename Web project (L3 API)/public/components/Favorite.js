@@ -10,8 +10,8 @@ export default {
     methods: {
         // Nouvelle méthode pour charger les données dès qu'on ouvre la page
         loadFavorites() {
-            fetch(`../app/controller/favorite_fetch.php?action=list`)
-                .then(r => r.json())
+            fetch(`index.php?page=favorite_fetch&action=list`, { credentials: 'include' })
+                .then(r => { if (!r.ok) throw new Error('Erreur réseau'); return r.json(); })
                 .then(data => {
                     this.nb_favorites = data.count;
                     this.favoriteArticles = data.articles;
@@ -20,16 +20,14 @@ export default {
         },
 
         toggleFavori(action, id = null) {
-            let url = `../app/controller/favorite_fetch.php?action=${action}`;
+            let url = `index.php?page=favorite_fetch&action=${action}`;
             if (id) url += '&id=' + id;
 
-            fetch(url)
-                .then(r => r.json())
+            fetch(url, { credentials: 'include' })
+                .then(r => { if (!r.ok) throw new Error('Erreur réseau'); return r.json(); })
                 .then(data => {
                     this.nb_favorites = data.count;
                     this.favoriteArticles = data.articles;
-                    
-                    // On prévient App.js que le compteur global a changé
                     this.$emit('update-fav-count', data.count);
                 })
                 .catch(err => console.error("Erreur d'action:", err));

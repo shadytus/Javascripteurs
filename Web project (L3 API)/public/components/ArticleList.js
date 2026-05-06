@@ -13,12 +13,13 @@ export default {
     },
     methods: {
         loadData() {
-            fetch(`../app/controller/list_articles_fetch.php`)
-                .then(r => r.json())
+            fetch(`index.php?page=list_articles_fetch`, { credentials: 'include' })
+                .then(r => { if (!r.ok) throw new Error('Erreur réseau'); return r.json(); })
                 .then(data => {
                     this.articles = data.articles;
                     this.mes_favoris = data.favoris;
-                });
+                })
+                .catch(err => console.error('Erreur chargement articles:', err));
         },
         
             // Dans ArticleList.js, remplace executeSearch par ça :
@@ -43,19 +44,21 @@ export default {
         },
 
         toggleFavorite(action, id) {
-            fetch(`../app/controller/favorite_fetch.php?action=${action}&id=${id}`)
-                .then(r => r.json())
+            fetch(`index.php?page=favorite_fetch&action=${action}&id=${id}`, { credentials: 'include' })
+                .then(r => { if (!r.ok) throw new Error('Erreur réseau'); return r.json(); })
                 .then(data => {
                     if (action === 'add') this.mes_favoris.push(id);
                     else this.mes_favoris = this.mes_favoris.filter(f => f !== id);
                     this.$emit('update-fav-count', data.count);
-                });
+                })
+                .catch(err => console.error('Erreur favoris:', err));
         },
 
         handleMouseOver(id) {
-            fetch(`../app/controller/article_fetch.php?id=${id}`)
-                .then(r => r.json())
-                .then(data => { if (data !== "inconnu") this.activeDetails = data; });
+            fetch(`index.php?page=article_fetch&id=${id}`, { credentials: 'include' })
+                .then(r => { if (!r.ok) throw new Error('Erreur réseau'); return r.json(); })
+                .then(data => { if (data !== "inconnu") this.activeDetails = data; })
+                .catch(err => console.error('Erreur détails:', err));
         },
         handleMouseOut() { this.activeDetails = null; }
     },
